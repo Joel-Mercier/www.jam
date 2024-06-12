@@ -1,9 +1,7 @@
 import { Box } from "@gluestack-ui/themed";
 
-export default function NewHunt() {
+export default function SettingsScreen() {
   return (
-    <Box>
-
-    </Box>
+    <Box></Box>
   )
 }

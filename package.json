@@ -1,5 +1,5 @@
 {
-  "name": "fliphunt",
+  "name": "www.jam",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
@@ -15,6 +15,8 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@dev-plugins/react-query": "^0.0.6",
+    "@expo-google-fonts/inter": "^0.2.3",
     "@expo/vector-icons": "^14.0.0",
     "@gluestack-style/react": "^1.0.56",
     "@gluestack-ui/config": "^1.1.18",
@@ -40,7 +42,8 @@
     "react-native-safe-area-context": "4.10.1",
     "react-native-screens": "3.31.1",
     "react-native-svg": "15.2.0",
-    "react-native-web": "~0.19.10"
+    "react-native-web": "~0.19.10",
+    "@shopify/flash-list": "1.6.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
