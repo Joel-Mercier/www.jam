@@ -51,9 +51,22 @@ export default function RootLayout() {
         <OverlayProvider>
           <ToastProvider>
             <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-              <Stack>
+              <Stack
+                screenOptions={{
+                  headerStyle: {
+                    // backgroundColor: "transparent",
+                    // borderWidth: 0,
+                    // elevation: 0
+                  }
+                }}
+              >
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                 <Stack.Screen name="+not-found" />
+                <Stack.Screen name="settings" />
+                <Stack.Screen name="favorites" />
+                <Stack.Screen name="followed" />
+                <Stack.Screen name="followers" />
+                <Stack.Screen name="notifications" />
               </Stack>
             </ThemeProvider>
           </ToastProvider>

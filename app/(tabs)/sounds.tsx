@@ -1,7 +1,7 @@
 import SoundList from "@/components/sounds/SoundList";
 import { useSounds } from "@/hooks/www.jam/useSounds";
-import { Box, Spinner, Toast, ToastDescription, ToastTitle, VStack, useToast } from "@gluestack-ui/themed";
-import { useEffect } from "react";
+import { Box, Spinner, Tabs, Text, Toast, ToastDescription, ToastTitle, VStack, useToast, TabsTabList, TabsTab, TabsTabTitle, TabsTabPanels, TabsTabPanel } from "@gluestack-ui/themed";
+import React, { useEffect } from "react";
 
 export default function SoundsScreen() {
   const toast = useToast()
@@ -15,7 +15,7 @@ export default function SoundsScreen() {
           const toastId = "toast-" + id
           return (
             <Toast nativeID={toastId} action="error" variant="accent">
-              <VStack space="xs" flex={1}>
+              <VStack space="xs">
                 <ToastTitle>Error</ToastTitle>
                 <ToastDescription>
                   Couldn't fetch your sounds, try again later.
@@ -31,7 +31,21 @@ export default function SoundsScreen() {
   if (isLoading) return <Spinner size="large" />
 
   return (
-    <Box height="100%">
+    <Box height="100%" px="$4">
+      <Tabs>
+        <TabsTabList>
+          <TabsTab>
+            <TabsTabTitle>Test</TabsTabTitle>
+          </TabsTab>
+          <TabsTab>
+            <TabsTabTitle>Test 2</TabsTabTitle>
+          </TabsTab>
+        </TabsTabList>
+        <TabsTabPanels>
+          <TabsTabPanel><Text>Test</Text></TabsTabPanel>
+          <TabsTabPanel><Text>Test 2</Text></TabsTabPanel>
+        </TabsTabPanels>
+      </Tabs>
       <SoundList sounds={sounds} />
     </Box>
 

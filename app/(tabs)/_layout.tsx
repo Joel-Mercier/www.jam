@@ -2,7 +2,7 @@ import { Link, Tabs } from 'expo-router';
 import React from 'react';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { AudioLines, Bell, Home, Plus, Search, Settings, Settings2, User } from 'lucide-react-native';
+import { AudioLines, Bell, Heart, Home, Plus, Search, Settings, Settings2, User } from 'lucide-react-native';
 import { TouchableOpacity, View } from 'react-native';
 import { HStack } from '@gluestack-ui/themed';
 
@@ -12,7 +12,6 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
         tabBarShowLabel: false,
         headerStyle: {
           backgroundColor: "transparent",
@@ -23,10 +22,19 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: 'Bonjour Joel',
           tabBarIcon: ({ color, focused }) => (
             <Home color={color} />
           ),
+          headerRight: ({ }) => (
+            <HStack space='xl'>
+              <Link href="/favorites" asChild>
+                <TouchableOpacity>
+                  <Heart color={"white"} />
+                </TouchableOpacity>
+              </Link>
+            </HStack>
+          )
         }}
       />
       <Tabs.Screen

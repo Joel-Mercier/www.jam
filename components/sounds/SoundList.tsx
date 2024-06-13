@@ -3,10 +3,15 @@ import Sound from "./Sound";
 
 export default function SoundList({ sounds }) {
   return (
-    <FlashList
-      data={sounds}
-      renderItem={({ item }) => <Sound sound={item} />}
-      estimatedItemSize={200}
-    />
+    <>
+      <Sound sound={null} />
+      <Sound sound={null} />
+      <Sound sound={null} />
+      <FlashList
+        data={sounds}
+        renderItem={({ item }) => <Sound sound={item} />}
+        estimatedItemSize={145}
+      />
+    </>
   )
 }
