@@ -1,9 +1,8 @@
 import { Link, Tabs } from 'expo-router';
 import React from 'react';
-
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { AudioLines, Bell, Heart, Home, Plus, Search, Settings, Settings2, User } from 'lucide-react-native';
-import { TouchableOpacity, View } from 'react-native';
+import { AudioLines, Bell, Heart, Home, Plus, Search, Settings, User } from 'lucide-react-native';
+import { TouchableOpacity } from 'react-native';
 import { HStack } from '@gluestack-ui/themed';
 
 export default function TabLayout() {
@@ -45,17 +44,6 @@ export default function TabLayout() {
             <Search color={color} />
           ),
           headerShown: true,
-          headerRight: ({ }) => (
-            <HStack space='xl'>
-              <Link href="/settings" asChild>
-                <TouchableOpacity>
-                  <Settings2 color={"white"} />
-                </TouchableOpacity>
-
-              </Link>
-            </HStack>
-
-          )
         }}
       />
       <Tabs.Screen
@@ -68,14 +56,12 @@ export default function TabLayout() {
           headerShown: true,
           headerRight: ({ }) => (
             <HStack space='xl'>
-              <Link href="/settings" asChild>
+              <Link href="/new-sound" asChild>
                 <TouchableOpacity>
                   <Plus color={"white"} />
                 </TouchableOpacity>
-
               </Link>
             </HStack>
-
           )
         }}
       />
@@ -94,16 +80,13 @@ export default function TabLayout() {
                 <TouchableOpacity>
                   <Settings color={"white"} />
                 </TouchableOpacity>
-
               </Link>
               <Link href="/notifications" asChild>
                 <TouchableOpacity>
                   <Bell color={"white"} />
                 </TouchableOpacity>
-
               </Link>
             </HStack>
-
           )
         }}
       />

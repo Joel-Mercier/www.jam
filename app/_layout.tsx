@@ -18,6 +18,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useReactQueryDevTools } from '@dev-plugins/react-query';
 import { ToastProvider } from "@gluestack-ui/toast"
 import { OverlayProvider } from "@gluestack-ui/overlay"
+import { SessionProvider } from '@/contexts/auth';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -51,23 +52,24 @@ export default function RootLayout() {
         <OverlayProvider>
           <ToastProvider>
             <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-              <Stack
-                screenOptions={{
-                  headerStyle: {
-                    // backgroundColor: "transparent",
-                    // borderWidth: 0,
-                    // elevation: 0
-                  }
-                }}
-              >
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                <Stack.Screen name="+not-found" />
-                <Stack.Screen name="settings" />
-                <Stack.Screen name="favorites" />
-                <Stack.Screen name="followed" />
-                <Stack.Screen name="followers" />
-                <Stack.Screen name="notifications" />
-              </Stack>
+              <SessionProvider>
+                <Stack
+                  screenOptions={{
+                    headerStyle: {
+                      // backgroundColor: "transparent",
+                      // borderWidth: 0,
+                      // elevation: 0
+                    }
+                  }}
+                >
+                  <Stack.Screen name="(app)" options={{ headerShown: false }} />
+                  <Stack.Screen name="+not-found" />
+                  <Stack.Screen name="start" options={{ headerShown: false }} />
+                  <Stack.Screen name="login" options={{ headerShown: false }} />
+                  <Stack.Screen name="sign-up" options={{ headerShown: false }} />
+
+                </Stack>
+              </SessionProvider>
             </ThemeProvider>
           </ToastProvider>
         </OverlayProvider>
