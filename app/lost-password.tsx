@@ -19,7 +19,7 @@ export default function LostPasswordScreen() {
             <InputField type="text" defaultValue="hello@www.jam.com" placeholder="Email" />
           </Input>
           <FormControlHelper>
-            <FormControlHelperText>
+            <FormControlHelperText size="sm">
               You will receive an email containing the password reset instructions.
             </FormControlHelperText>
           </FormControlHelper>

@@ -3,8 +3,11 @@ import { Link } from "expo-router";
 import { BookOpen, ChevronRight, GlobeLock, Info, LogOut, Music, Sparkle } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 import * as Application from 'expo-application';
+import { useSession } from "@/contexts/auth";
 
 export default function SettingsScreen() {
+  const { signOut } = useSession();
+
   return (
     <ScrollView h="$full">
       <VStack px="$4" justifyContent="space-between" h="$full">
@@ -26,7 +29,7 @@ export default function SettingsScreen() {
             </TouchableOpacity>
           </Link>
           <Divider />
-          <Link href={"/"} asChild>
+          <Link href={"/settings/privacy"} asChild>
             <TouchableOpacity>
               <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
                 <HStack alignItems="center">
@@ -40,7 +43,7 @@ export default function SettingsScreen() {
             </TouchableOpacity>
           </Link>
           <Divider />
-          <Link href={"/"} asChild>
+          <Link href={"/settings/rate"} asChild>
             <TouchableOpacity>
               <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
                 <HStack alignItems="center">
@@ -54,7 +57,7 @@ export default function SettingsScreen() {
             </TouchableOpacity>
           </Link>
           <Divider />
-          <Link href={"/"} asChild>
+          <Link href={"/settings/connect"} asChild>
             <TouchableOpacity>
               <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
                 <HStack alignItems="center">
@@ -68,7 +71,7 @@ export default function SettingsScreen() {
             </TouchableOpacity>
           </Link>
           <Divider />
-          <Link href={"/"} asChild>
+          <Link href={"/settings/terms-and-conditions"} asChild>
             <TouchableOpacity>
               <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
                 <HStack alignItems="center">
@@ -82,7 +85,7 @@ export default function SettingsScreen() {
             </TouchableOpacity>
           </Link>
           <Divider />
-          <Link href={"/"} asChild>
+          <Link href={"/settings/about"} asChild>
             <TouchableOpacity>
               <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
                 <HStack alignItems="center">
@@ -96,19 +99,17 @@ export default function SettingsScreen() {
             </TouchableOpacity>
           </Link>
           <Divider />
-          <Link href={"/"} asChild>
-            <TouchableOpacity>
-              <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
-                <HStack alignItems="center">
-                  <LogOut color="white" />
-                  <VStack ml="$8">
-                    <Heading size="sm">Log out</Heading>
-                  </VStack>
-                </HStack>
-                <ChevronRight color="white" size={16} />
+          <TouchableOpacity onPress={() => signOut()}>
+            <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
+              <HStack alignItems="center">
+                <LogOut color="white" />
+                <VStack ml="$8">
+                  <Heading size="sm">Log out</Heading>
+                </VStack>
               </HStack>
-            </TouchableOpacity>
-          </Link>
+              <ChevronRight color="white" size={16} />
+            </HStack>
+          </TouchableOpacity>
         </VStack>
         <Center>
           <Text>{Application.nativeApplicationVersion}</Text>

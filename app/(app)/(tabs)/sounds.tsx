@@ -46,7 +46,7 @@ export default function SoundsScreen() {
           <TabsTabPanel><Text>Test 2</Text></TabsTabPanel>
         </TabsTabPanels>
       </Tabs>
-      <SoundList sounds={sounds} />
+      <SoundList sounds={[null, null, null]} />
     </Box>
 
   );

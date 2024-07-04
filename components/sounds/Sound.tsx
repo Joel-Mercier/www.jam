@@ -2,11 +2,17 @@ import { Avatar, AvatarFallbackText, AvatarGroup, Badge, BadgeText, Box, Card, H
 import { Link } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
-export default function Sound({ sound }) {
+export default function Sound({ sound, horizontal = false, isLast = false }) {
   return (
-    <Link href={"/sounds/1"} asChild>
+    <Link
+      href={{
+        pathname: "/sounds/[id]",
+        params: { id: "1" }
+      }}
+      asChild
+    >
       <TouchableOpacity>
-        <Card mb="$4">
+        <Card mb="$4" w={horizontal ? "$64" : "$full"} mr={horizontal && !isLast ? "$4" : "$0"}>
           <Heading size="md" numberOfLines={1}>
             My awesome song collab with www.jam
           </Heading>

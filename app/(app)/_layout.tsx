@@ -22,11 +22,12 @@ export default function AppLayout() {
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="settings" options={{ title: "Settings" }} />
+      <Stack.Screen name="settings" options={{ title: "Settings", headerShown: false }} />
       <Stack.Screen name="favorites" options={{ title: "Favorites" }} />
       <Stack.Screen name="followed" options={{ title: "Follows" }} />
       <Stack.Screen name="followers" options={{ title: "Followers" }} />
       <Stack.Screen name="notifications" options={{ title: "Notifications" }} />
+      <Stack.Screen name="sounds/[id]" options={{ title: "Sound" }} />
     </Stack>
   );
 }
