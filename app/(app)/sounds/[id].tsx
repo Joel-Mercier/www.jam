@@ -30,7 +30,7 @@ export default function SoundScreen() {
           <Text size='sm'>118 people are interested</Text>
         </HStack>
         <VStack overflow='hidden'>
-          <HStack py="$2" alignItems="center">
+          <HStack alignItems="center">
             <Box mr="$6">
               <Gauge color="white" />
             </Box>
@@ -39,7 +39,7 @@ export default function SoundScreen() {
               <Divider w="$full" />
             </VStack>
           </HStack>
-          <HStack py="$2" alignItems="center">
+          <HStack alignItems="center">
             <Box mr="$6">
               <Music color="white" />
             </Box>
@@ -48,7 +48,7 @@ export default function SoundScreen() {
               <Divider w="$full" />
             </VStack>
           </HStack>
-          <HStack py="$2" alignItems="center">
+          <HStack alignItems="center">
             <Box mr="$6">
               <Clock color="white" />
             </Box>
