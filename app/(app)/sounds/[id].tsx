@@ -1,5 +1,13 @@
+import { ScrollView } from "@/components/ui/scroll-view";
+import { VStack } from "@/components/ui/vstack";
+import { Text } from "@/components/ui/text";
+import { HStack } from "@/components/ui/hstack";
+import { Heading } from "@/components/ui/heading";
+import { Divider } from "@/components/ui/divider";
+import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
+import { Box } from "@/components/ui/box";
+import { BadgeText, Badge } from "@/components/ui/badge";
 import UserCard from '@/components/users/UserCard';
-import { BadgeText, Box, Button, ButtonIcon, ButtonText, Divider, Heading, HStack, Text, VStack, Badge, ScrollView } from '@gluestack-ui/themed';
 import { FlashList } from '@shopify/flash-list';
 import { useLocalSearchParams } from 'expo-router';
 import { Clock, Gauge, Heart, Music } from 'lucide-react-native';
@@ -11,68 +19,66 @@ export default function SoundScreen() {
 
   return (
     <ScrollView>
-      <Box height="100%" px="$4" mb="$8">
-        <Heading size="2xl" mb="$2" mt="$4">My awesome song collab with www.jam</Heading>
+      <Box className="h-[100%] px-4 mb-8">
+        <Heading size="2xl" className="mb-2 mt-4">My awesome song collab with www.jam</Heading>
         <Text size="lg">By Joel Mercier</Text>
-        <HStack alignItems='center' justifyContent='space-between'>
+        <HStack className="items-center justify-between">
           <Button
             size="xs"
             variant="solid"
             action="secondary"
             isDisabled={false}
             isFocusVisible={false}
-            mt="$4"
-            mb="$4"
-          >
-            <ButtonIcon as={Heart} mr="$2" />
+            className="mt-4 mb-4">
+            <ButtonIcon as={Heart} className="mr-2" />
             <ButtonText>Add to favorites</ButtonText>
           </Button>
           <Text size='sm'>118 people are interested</Text>
         </HStack>
-        <VStack overflow='hidden'>
-          <HStack alignItems="center">
-            <Box mr="$6">
+        <VStack className="overflow-hidden">
+          <HStack className="items-center">
+            <Box className="mr-6">
               <Gauge color="white" />
             </Box>
-            <VStack w="$full" overflow='hidden'>
-              <Text py="$2">120 BPM</Text>
-              <Divider w="$full" />
+            <VStack className="w-full overflow-hidden">
+              <Text className="py-2">120 BPM</Text>
+              <Divider className="w-full" />
             </VStack>
           </HStack>
-          <HStack alignItems="center">
-            <Box mr="$6">
+          <HStack className="items-center">
+            <Box className="mr-6">
               <Music color="white" />
             </Box>
-            <VStack w="$full" overflow='hidden'>
-              <Text py="$2">A min</Text>
-              <Divider w="$full" />
+            <VStack className="w-full overflow-hidden">
+              <Text className="py-2">A min</Text>
+              <Divider className="w-full" />
             </VStack>
           </HStack>
-          <HStack alignItems="center">
-            <Box mr="$6">
+          <HStack className="items-center">
+            <Box className="mr-6">
               <Clock color="white" />
             </Box>
-            <VStack w="$full" overflow='hidden'>
-              <Text py="$2">00:16</Text>
-              <Divider w="$full" />
+            <VStack className="w-full overflow-hidden">
+              <Text className="py-2">00:16</Text>
+              <Divider className="w-full" />
             </VStack>
           </HStack>
         </VStack>
-        <Heading size="lg" mb="$2" mt="$4">About</Heading>
+        <Heading size="lg" className="mb-2 mt-4">About</Heading>
         <Text>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem fugit dolorem cum officiis nihil quas laborum vero totam. In, inventore doloribus quasi ad accusantium dolorem repudiandae eum alias dolore et.</Text>
-        <Heading size="lg" mb="$2" mt="$4">Vibe</Heading>
-        <HStack flexWrap="wrap" flexDirection="row" alignItems="center" mt="$4" space="sm">
-          <Badge size="md" variant="outline" borderRadius="$none" action="muted">
+        <Heading size="lg" className="mb-2 mt-4">Vibe</Heading>
+        <HStack space="sm" className="flex-wrap flex-row items-center mt-4">
+          <Badge size="md" variant="outline" action="muted" className="rounded-none">
             <BadgeText>Piano</BadgeText>
           </Badge>
-          <Badge size="md" variant="outline" borderRadius="$none" action="muted">
+          <Badge size="md" variant="outline" action="muted" className="rounded-none">
             <BadgeText>Chill</BadgeText>
           </Badge>
-          <Badge size="md" variant="outline" borderRadius="$none" action="muted">
+          <Badge size="md" variant="outline" action="muted" className="rounded-none">
             <BadgeText>Pop</BadgeText>
           </Badge>
         </HStack>
-        <Heading size="lg" mb="$2" mt="$4">Collaborators</Heading>
+        <Heading size="lg" className="mb-2 mt-4">Collaborators</Heading>
         <FlashList
           data={collaborators}
           renderItem={({ item }) => <UserCard user={item} horizontal={true} isLast={item?.id === collaborators[collaborators.length - 1]?.id} />}
@@ -81,5 +87,5 @@ export default function SoundScreen() {
         />
       </Box>
     </ScrollView>
-  )
+  );
 }

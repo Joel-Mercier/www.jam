@@ -1,5 +1,18 @@
+import { SearchIcon } from "@/components/ui/icon";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { Box } from "@/components/ui/box";
+
+import {
+  Actionsheet,
+  ActionsheetBackdrop,
+  ActionsheetContent,
+  ActionsheetDragIndicator,
+  ActionsheetDragIndicatorWrapper,
+  ActionsheetItem,
+  ActionsheetItemText,
+} from "@/components/ui/actionsheet";
+
 import SoundList from "@/components/sounds/SoundList";
-import { Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper, ActionsheetItem, ActionsheetItemText, Box, Input, InputField, InputIcon, InputSlot, SearchIcon } from "@gluestack-ui/themed";
 import sounds from "./sounds";
 import { Settings2 } from "lucide-react-native";
 import { useState } from "react";
@@ -9,13 +22,13 @@ export default function SearchScreen() {
   const [showActionsheet, setShowActionsheet] = useState(false)
   const handleClose = () => setShowActionsheet(!showActionsheet)
   return (
-    <Box height="100%" px="$4">
-      <Input mb="$4">
-        <InputSlot pl="$3">
+    <Box className="h-[100%] px-4">
+      <Input className="mb-4">
+        <InputSlot className="pl-3">
           <InputIcon as={SearchIcon} />
         </InputSlot>
         <InputField placeholder="Search..." />
-        <InputSlot pr="$3">
+        <InputSlot className="pr-3">
           <TouchableOpacity onPress={handleClose}>
             <InputIcon as={Settings2} />
 
@@ -23,9 +36,9 @@ export default function SearchScreen() {
         </InputSlot>
       </Input>
       <SoundList sounds={sounds} />
-      <Actionsheet isOpen={showActionsheet} onClose={handleClose} zIndex={999}>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose} className="z-999">
         <ActionsheetBackdrop />
-        <ActionsheetContent h="$72" zIndex={999}>
+        <ActionsheetContent className="h-72 z-999">
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
@@ -47,7 +60,6 @@ export default function SearchScreen() {
         </ActionsheetContent>
       </Actionsheet>
     </Box>
-
   );
 }
 

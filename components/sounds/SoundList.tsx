@@ -9,5 +9,5 @@ export default function SoundList({ sounds, horizontal = false }) {
       estimatedItemSize={145}
       horizontal={horizontal}
     />
-  )
+  );
 }

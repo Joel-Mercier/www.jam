@@ -1,6 +1,9 @@
+import { VStack } from "@/components/ui/vstack";
+import { Toast, ToastDescription, ToastTitle, useToast } from "@/components/ui/toast";
+import { Spinner } from "@/components/ui/spinner";
+import { Box } from "@/components/ui/box";
 import SoundList from "@/components/sounds/SoundList";
 import { useSounds } from "@/hooks/www.jam/useSounds";
-import { Box, Spinner, Tabs, Text, Toast, ToastDescription, ToastTitle, VStack, useToast, TabsTabList, TabsTab, TabsTabTitle, TabsTabPanels, TabsTabPanel } from "@gluestack-ui/themed";
 import React, { useEffect } from "react";
 
 export default function SoundsScreen() {
@@ -22,7 +25,7 @@ export default function SoundsScreen() {
                 </ToastDescription>
               </VStack>
             </Toast>
-          )
+          );
         },
       })
     }
@@ -31,24 +34,9 @@ export default function SoundsScreen() {
   if (isLoading) return <Spinner size="large" />
 
   return (
-    <Box height="100%" px="$4">
-      <Tabs>
-        <TabsTabList>
-          <TabsTab>
-            <TabsTabTitle>Test</TabsTabTitle>
-          </TabsTab>
-          <TabsTab>
-            <TabsTabTitle>Test 2</TabsTabTitle>
-          </TabsTab>
-        </TabsTabList>
-        <TabsTabPanels>
-          <TabsTabPanel><Text>Test</Text></TabsTabPanel>
-          <TabsTabPanel><Text>Test 2</Text></TabsTabPanel>
-        </TabsTabPanels>
-      </Tabs>
+    <Box className="h-[100%] px-4">
       <SoundList sounds={[null, null, null]} />
     </Box>
-
   );
 }
 

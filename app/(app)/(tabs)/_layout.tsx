@@ -1,9 +1,9 @@
+import { HStack } from "@/components/ui/hstack";
 import { Link, Tabs } from 'expo-router';
 import React from 'react';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { AudioLines, Bell, Heart, Home, Plus, Search, Settings, User } from 'lucide-react-native';
 import { TouchableOpacity } from 'react-native';
-import { HStack } from '@gluestack-ui/themed';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();

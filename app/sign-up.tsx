@@ -1,4 +1,22 @@
-import { AlertCircleIcon, Box, Button, ButtonText, Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel, FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlHelper, FormControlHelperText, FormControlLabel, FormControlLabelText, Input, InputField, InputIcon, InputSlot, KeyboardAvoidingView, ScrollView, SearchIcon, Text, VStack } from "@gluestack-ui/themed";
+import { VStack } from "@/components/ui/vstack";
+import { ScrollView } from "@/components/ui/scroll-view";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+
+import {
+  FormControl,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlLabel,
+  FormControlLabelText,
+} from "@/components/ui/form-control";
+
+import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Box } from "@/components/ui/box";
+import { AlertCircleIcon, SearchIcon } from "@/components/ui/icon";
 import { CheckIcon, EyeIcon, EyeOffIcon } from "lucide-react-native";
 import { useState } from "react";
 
@@ -20,17 +38,17 @@ export default function SignupScreen() {
 
   return (
     <ScrollView>
-      <Box px="$4" alignItems="center" justifyContent="center" height="$full">
-        <VStack w="$80">
+      <Box className="px-4 items-center justify-center h-full">
+        <VStack className="w-full">
           <FormControl
             size="lg"
             isDisabled={false}
             isInvalid={false}
             isReadOnly={false}
             isRequired={true}
-            mb="$4"
+            className="mb-4"
           >
-            <FormControlLabel mb="$1">
+            <FormControlLabel className="mb-1">
               <FormControlLabelText>First name</FormControlLabelText>
             </FormControlLabel>
             <Input>
@@ -49,9 +67,9 @@ export default function SignupScreen() {
             isInvalid={false}
             isReadOnly={false}
             isRequired={true}
-            mb="$4"
+            className="mb-4"
           >
-            <FormControlLabel mb="$1">
+            <FormControlLabel className="mb-1">
               <FormControlLabelText>Last name</FormControlLabelText>
             </FormControlLabel>
             <Input>
@@ -70,9 +88,9 @@ export default function SignupScreen() {
             isInvalid={false}
             isReadOnly={false}
             isRequired={true}
-            mb="$4"
+            className="mb-4"
           >
-            <FormControlLabel mb="$1">
+            <FormControlLabel className="mb-1">
               <FormControlLabelText>Email</FormControlLabelText>
             </FormControlLabel>
             <Input>
@@ -91,17 +109,17 @@ export default function SignupScreen() {
             isInvalid={false}
             isReadOnly={false}
             isRequired={true}
-            mb="$4"
+            className="mb-4"
           >
-            <FormControlLabel mb="$1">
+            <FormControlLabel className="mb-1">
               <FormControlLabelText>Password</FormControlLabelText>
             </FormControlLabel>
             <Input>
               <InputField type={showPassword ? "text" : "password"} defaultValue="12345" placeholder="Password" />
-              <InputSlot pr="$3" onPress={togglePassword}>
+              <InputSlot onPress={togglePassword} className="pr-3">
                 <InputIcon
                   as={showPassword ? EyeIcon : EyeOffIcon}
-                  color="$darkBlue500"
+                  className="text-darkBlue-500"
                 />
               </InputSlot>
             </Input>
@@ -123,17 +141,17 @@ export default function SignupScreen() {
             isInvalid={false}
             isReadOnly={false}
             isRequired={true}
-            mb="$4"
+            className="mb-4"
           >
-            <FormControlLabel mb="$1">
+            <FormControlLabel className="mb-1">
               <FormControlLabelText>Password confirmation</FormControlLabelText>
             </FormControlLabel>
             <Input>
               <InputField type={showPasswordConfirmation ? "text" : "password"} defaultValue="12345" placeholder="Password confirmation" />
-              <InputSlot pr="$3" onPress={togglePasswordConfirmation}>
+              <InputSlot onPress={togglePasswordConfirmation} className="pr-3">
                 <InputIcon
                   as={showPasswordConfirmation ? EyeIcon : EyeOffIcon}
-                  color="$darkBlue500"
+                  className="text-darkBlue-500"
                 />
               </InputSlot>
             </Input>
@@ -155,9 +173,9 @@ export default function SignupScreen() {
             isInvalid={false}
             isReadOnly={false}
             isRequired={true}
-            mb="$4"
+            className="mb-4"
           >
-            <FormControlLabel mb="$1">
+            <FormControlLabel className="mb-1">
               <FormControlLabelText>Phone</FormControlLabelText>
             </FormControlLabel>
             <Input>
@@ -170,8 +188,8 @@ export default function SignupScreen() {
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
-          <Checkbox size="md" isInvalid={false} isDisabled={false} mb="$8">
-            <CheckboxIndicator mr="$2">
+          <Checkbox size="md" isInvalid={false} isDisabled={false} className="mb-8" value="consent">
+            <CheckboxIndicator className="mr-2">
               <CheckboxIcon as={CheckIcon} />
             </CheckboxIndicator>
             <CheckboxLabel>I agree with the terms & conditions</CheckboxLabel>
@@ -188,5 +206,5 @@ export default function SignupScreen() {
         </VStack>
       </Box>
     </ScrollView>
-  )
+  );
 }

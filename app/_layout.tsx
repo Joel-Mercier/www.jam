@@ -1,10 +1,10 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import "@/global.css";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-import { GluestackUIProvider } from "@gluestack-ui/themed"
-import { config } from "../config/gluestack-ui.config" // Optional if you want to use default theme
 import {
   useFonts,
   Inter_400Regular,
@@ -48,7 +48,7 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GluestackUIProvider config={config}>
+      <GluestackUIProvider mode="light">
         <OverlayProvider>
           <ToastProvider>
             <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>

@@ -1,18 +1,34 @@
-import { AlertCircleIcon, Box, Button, ButtonText, FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlHelper, FormControlHelperText, FormControlLabel, FormControlLabelText, Input, InputField, VStack } from "@gluestack-ui/themed";
+import { VStack } from "@/components/ui/vstack";
+import { Input, InputField } from "@/components/ui/input";
+
+import {
+  FormControl,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlLabel,
+  FormControlLabelText,
+} from "@/components/ui/form-control";
+
+import { Button, ButtonText } from "@/components/ui/button";
+import { Box } from "@/components/ui/box";
+import { AlertCircleIcon } from "@/components/ui/icon";
 
 export default function LostPasswordScreen() {
   return (
-    <Box px="$4" alignItems="center" justifyContent="center" height="$full">
-      <VStack w="$80">
+    <Box className="px-4 items-center justify-center h-full">
+      <VStack className="w-80">
         <FormControl
           size="lg"
           isDisabled={false}
           isInvalid={false}
           isReadOnly={false}
           isRequired={true}
-          mb="$4"
+          className="mb-4"
         >
-          <FormControlLabel mb="$1">
+          <FormControlLabel className="mb-1">
             <FormControlLabelText>Email</FormControlLabelText>
           </FormControlLabel>
           <Input>
@@ -41,5 +57,5 @@ export default function LostPasswordScreen() {
         </Button>
       </VStack>
     </Box>
-  )
+  );
 }

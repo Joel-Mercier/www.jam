@@ -1,9 +1,8 @@
-import { Box } from "@gluestack-ui/themed";
+import { Box } from "@/components/ui/box";
 
 export default function NewSound() {
   return (
-    <Box px="$4">
-
+    <Box className="px-4">
     </Box>
-  )
+  );
 }

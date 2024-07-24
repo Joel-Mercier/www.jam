@@ -1,4 +1,11 @@
-import { Avatar, AvatarFallbackText, Box, Divider, HStack, Heading, VStack, Text, Center, ScrollView } from "@gluestack-ui/themed";
+import { ScrollView } from "@/components/ui/scroll-view";
+import { Center } from "@/components/ui/center";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Divider } from "@/components/ui/divider";
+import { Avatar, AvatarFallbackText } from "@/components/ui/avatar";
 import { Link } from "expo-router";
 import { BookOpen, ChevronRight, GlobeLock, Info, LogOut, Music, Sparkle } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
@@ -9,14 +16,14 @@ export default function SettingsScreen() {
   const { signOut } = useSession();
 
   return (
-    <ScrollView h="$full">
-      <VStack px="$4" justifyContent="space-between" h="$full">
+    <ScrollView className="h-full">
+      <VStack className="px-4 justify-between h-full">
         <VStack>
           <Link href={"/"} asChild>
             <TouchableOpacity>
-              <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
-                <HStack alignItems="center">
-                  <Avatar size="sm" borderRadius="$full" mr="$8">
+              <HStack space="md" className="items-center py-6 justify-between w-full">
+                <HStack className="items-center">
+                  <Avatar size="sm" className="rounded-full mr-8">
                     <AvatarFallbackText>Joel Mercier</AvatarFallbackText>
                   </Avatar>
                   <VStack>
@@ -31,10 +38,10 @@ export default function SettingsScreen() {
           <Divider />
           <Link href={"/settings/privacy"} asChild>
             <TouchableOpacity>
-              <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
-                <HStack alignItems="center">
+              <HStack space="md" className="items-center py-6 justify-between w-full">
+                <HStack className="items-center">
                   <GlobeLock color="white" />
-                  <VStack ml="$8">
+                  <VStack className="ml-8">
                     <Heading size="sm">Privacy</Heading>
                   </VStack>
                 </HStack>
@@ -45,10 +52,10 @@ export default function SettingsScreen() {
           <Divider />
           <Link href={"/settings/rate"} asChild>
             <TouchableOpacity>
-              <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
-                <HStack alignItems="center">
+              <HStack space="md" className="items-center py-6 justify-between w-full">
+                <HStack className="items-center">
                   <Sparkle color="white" />
-                  <VStack ml="$8">
+                  <VStack className="ml-8">
                     <Heading size="sm">Rate</Heading>
                   </VStack>
                 </HStack>
@@ -59,10 +66,10 @@ export default function SettingsScreen() {
           <Divider />
           <Link href={"/settings/connect"} asChild>
             <TouchableOpacity>
-              <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
-                <HStack alignItems="center">
+              <HStack space="md" className="items-center py-6 justify-between w-full">
+                <HStack className="items-center">
                   <Music color="white" />
-                  <VStack ml="$8">
+                  <VStack className="ml-8">
                     <Heading size="sm">Connect with your music</Heading>
                   </VStack>
                 </HStack>
@@ -73,10 +80,10 @@ export default function SettingsScreen() {
           <Divider />
           <Link href={"/settings/terms-and-conditions"} asChild>
             <TouchableOpacity>
-              <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
-                <HStack alignItems="center">
+              <HStack space="md" className="items-center py-6 justify-between w-full">
+                <HStack className="items-center">
                   <BookOpen color="white" />
-                  <VStack ml="$8">
+                  <VStack className="ml-8">
                     <Heading size="sm">Terms & conditions</Heading>
                   </VStack>
                 </HStack>
@@ -87,10 +94,10 @@ export default function SettingsScreen() {
           <Divider />
           <Link href={"/settings/about"} asChild>
             <TouchableOpacity>
-              <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
-                <HStack alignItems="center">
+              <HStack space="md" className="items-center py-6 justify-between w-full">
+                <HStack className="items-center">
                   <Info color="white" />
-                  <VStack ml="$8">
+                  <VStack className="ml-8">
                     <Heading size="sm">About</Heading>
                   </VStack>
                 </HStack>
@@ -100,10 +107,10 @@ export default function SettingsScreen() {
           </Link>
           <Divider />
           <TouchableOpacity onPress={() => signOut()}>
-            <HStack alignItems="center" py="$6" justifyContent="space-between" space="md" w="$full">
-              <HStack alignItems="center">
+            <HStack space="md" className="items-center py-6 justify-between w-full">
+              <HStack className="items-center">
                 <LogOut color="white" />
-                <VStack ml="$8">
+                <VStack className="ml-8">
                   <Heading size="sm">Log out</Heading>
                 </VStack>
               </HStack>
@@ -116,5 +123,5 @@ export default function SettingsScreen() {
         </Center>
       </VStack>
     </ScrollView>
-  )
+  );
 }

@@ -1,10 +1,10 @@
+import { Box } from "@/components/ui/box";
 import SoundList from "@/components/sounds/SoundList";
-import { Box } from "@gluestack-ui/themed";
 
 export default function FavoritesScreen() {
   return (
-    <Box px="$4">
+    <Box className="px-4">
       <SoundList sounds={[]} />
     </Box>
-  )
+  );
 }

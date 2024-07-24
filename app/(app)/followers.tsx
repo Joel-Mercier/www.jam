@@ -1,16 +1,18 @@
+import { SearchIcon } from "@/components/ui/icon";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
+import { Box } from "@/components/ui/box";
 import UserList from "@/components/users/UserList";
-import { Box, Input, InputField, InputIcon, InputSlot, SearchIcon } from "@gluestack-ui/themed";
 
 export default function FollowersScreen() {
   return (
-    <Box px="$4">
-      <Input mb="$4">
-        <InputSlot pl="$3">
+    <Box className="px-4">
+      <Input className="mb-4">
+        <InputSlot className="pl-3">
           <InputIcon as={SearchIcon} />
         </InputSlot>
         <InputField placeholder="Search follower" />
       </Input>
       <UserList users={[]} />
     </Box>
-  )
+  );
 }

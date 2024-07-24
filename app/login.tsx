@@ -1,5 +1,23 @@
+import { VStack } from "@/components/ui/vstack";
+import { LinkText } from "@/components/ui/link";
+import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
+import { Input, InputField } from "@/components/ui/input";
+
+import {
+  FormControl,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  FormControlHelper,
+  FormControlHelperText,
+  FormControlLabel,
+  FormControlLabelText,
+} from "@/components/ui/form-control";
+
+import { Button, ButtonText } from "@/components/ui/button";
+import { Box } from "@/components/ui/box";
+import { AlertCircleIcon } from "@/components/ui/icon";
 import { useSession } from "@/contexts/auth";
-import { AlertCircleIcon, Box, Button, ButtonText, FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlHelper, FormControlHelperText, FormControlLabel, FormControlLabelText, Input, InputField, InputIcon, InputSlot, KeyboardAvoidingView, LinkText, SearchIcon, Text, VStack } from "@gluestack-ui/themed";
 import { Link, router } from "expo-router";
 
 export default function LoginScreen() {
@@ -7,17 +25,17 @@ export default function LoginScreen() {
 
   return (
     <KeyboardAvoidingView>
-      <Box px="$4" alignItems="center" justifyContent="center" height="$full">
-        <VStack w="$80">
+      <Box className="px-4 items-center justify-center h-full">
+        <VStack className="w-80">
           <FormControl
             size="lg"
             isDisabled={false}
             isInvalid={false}
             isReadOnly={false}
             isRequired={true}
-            mb="$4"
+            className="mb-4"
           >
-            <FormControlLabel mb="$1">
+            <FormControlLabel className="mb-1">
               <FormControlLabelText>Email</FormControlLabelText>
             </FormControlLabel>
             <Input>
@@ -36,9 +54,9 @@ export default function LoginScreen() {
             isInvalid={false}
             isReadOnly={false}
             isRequired={true}
-            mb="$8"
+            className="mb-8"
           >
-            <FormControlLabel mb="$1">
+            <FormControlLabel className="mb-1">
               <FormControlLabelText>Password</FormControlLabelText>
             </FormControlLabel>
             <Input>
@@ -62,11 +80,11 @@ export default function LoginScreen() {
             action="primary"
             isDisabled={false}
             isFocusVisible={false}
-            mb="$8"
             onPress={() => {
               signIn();
               router.replace('/')
             }}
+            className="mb-8"
           >
             <ButtonText>Sign in</ButtonText>
           </Button>
@@ -76,5 +94,5 @@ export default function LoginScreen() {
         </VStack>
       </Box>
     </KeyboardAvoidingView>
-  )
+  );
 }
