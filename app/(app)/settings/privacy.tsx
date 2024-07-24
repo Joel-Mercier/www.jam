@@ -9,7 +9,7 @@ import { Heart } from "lucide-react-native";
 
 export default function PrivacyScreen() {
   return (
-    <Box className="px-4">
+    <Box className="px-4 mt-8">
       <HStack className="items-start justify-between py-4">
         <HStack>
           <Box className="mr-4 mt-2">

@@ -11,16 +11,18 @@ import UserCard from '@/components/users/UserCard';
 import { FlashList } from '@shopify/flash-list';
 import { useLocalSearchParams } from 'expo-router';
 import { Clock, Gauge, Heart, Music } from 'lucide-react-native';
+import { useHeaderHeight } from '@react-navigation/elements';
 
 const collaborators = [{ id: 1, name: "John Doe" }, { id: 2, name: "John Doe" }, { id: 3, name: "John Doe" }]
 
 export default function SoundScreen() {
   const { id } = useLocalSearchParams();
+  const headerHeight = useHeaderHeight();
 
   return (
     <ScrollView>
-      <Box className="h-[100%] px-4 mb-8">
-        <Heading size="2xl" className="mb-2 mt-4">My awesome song collab with www.jam</Heading>
+      <Box className="h-[100%] px-4 mt-8 mb-8" style={{ paddingTop: headerHeight }}>
+        <Heading size="2xl" className="mb-2">My awesome song collab with www.jam</Heading>
         <Text size="lg">By Joel Mercier</Text>
         <HStack className="items-center justify-between">
           <Button

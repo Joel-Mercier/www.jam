@@ -16,7 +16,7 @@ export default function SettingsScreen() {
   const { signOut } = useSession();
 
   return (
-    <ScrollView className="h-full">
+    <ScrollView className="h-full mt-8">
       <VStack className="px-4 justify-between h-full">
         <VStack>
           <Link href={"/"} asChild>

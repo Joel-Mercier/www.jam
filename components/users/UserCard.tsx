@@ -10,7 +10,7 @@ import { TouchableOpacity } from "react-native";
 
 export default function UserCard({ user, horizontal = false, isLast = false }) {
   return (
-    <Link href={"/users/1"} asChild>
+    <Link href={{ pathname: "/users/[id]", params: { id: "1" } }} asChild>
       <TouchableOpacity>
         <Card size="sm" variant="ghost" className={` ${horizontal && !isLast ? "mr-4" : "mr-0"} `}>
           <VStack className="items-center">

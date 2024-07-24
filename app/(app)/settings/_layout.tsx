@@ -6,9 +6,9 @@ export default function SettingsLayout() {
     <Stack
       screenOptions={{
         headerStyle: {
-          // backgroundColor: "transparent",
-          // borderWidth: 0,
-          // elevation: 0
+          backgroundColor: "transparent",
+          borderWidth: 0,
+          elevation: 0
         }
       }}
     >

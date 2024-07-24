@@ -14,11 +14,8 @@ export default function AppLayout() {
   return (
     <Stack
       screenOptions={{
-        headerStyle: {
-          // backgroundColor: "transparent",
-          // borderWidth: 0,
-          // elevation: 0
-        }
+        headerStyle: { backgroundColor: "transparent", borderWidth: 0, elevation: 0 },
+
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -27,7 +24,8 @@ export default function AppLayout() {
       <Stack.Screen name="followed" options={{ title: "Follows" }} />
       <Stack.Screen name="followers" options={{ title: "Followers" }} />
       <Stack.Screen name="notifications" options={{ title: "Notifications" }} />
-      <Stack.Screen name="sounds/[id]" options={{ title: "Sound" }} />
+      <Stack.Screen name="sounds/[id]" options={{ headerTitle: "", headerTransparent: true }} />
+      <Stack.Screen name="users/[id]" options={{ headerTitle: "", headerTransparent: true }} />
     </Stack>
   );
 }

@@ -34,7 +34,7 @@ export default function SoundsScreen() {
   if (isLoading) return <Spinner size="large" />
 
   return (
-    <Box className="h-[100%] px-4">
+    <Box className="h-[100%] px-4 mt-8">
       <SoundList sounds={[null, null, null]} />
     </Box>
   );

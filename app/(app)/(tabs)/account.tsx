@@ -11,8 +11,8 @@ import { TouchableOpacity } from "react-native";
 
 export default function AccountScreen() {
   return (
-    <Box className="h-[100%] items-center">
-      <Avatar size="xl" className="rounded-full mb-4 mt-8">
+    <Box className="h-[100%] items-center mt-8">
+      <Avatar size="xl" className="rounded-full mb-4">
         <AvatarFallbackText>Joel Mercier</AvatarFallbackText>
       </Avatar>
       <Heading size="2xl" bold className="mb-0">Joel Mercier</Heading>

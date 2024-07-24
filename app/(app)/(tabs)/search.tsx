@@ -22,8 +22,8 @@ export default function SearchScreen() {
   const [showActionsheet, setShowActionsheet] = useState(false)
   const handleClose = () => setShowActionsheet(!showActionsheet)
   return (
-    <Box className="h-[100%] px-4">
-      <Input className="mb-4">
+    <Box className="h-[100%] px-4 mt-8">
+      <Input className="mb-4" size="xl">
         <InputSlot className="pl-3">
           <InputIcon as={SearchIcon} />
         </InputSlot>

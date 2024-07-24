@@ -5,7 +5,7 @@ import UserList from "@/components/users/UserList";
 
 export default function FollowedScreen() {
   return (
-    <Box className="px-4">
+    <Box className="px-4 mt-8">
       <Input className="mb-4">
         <InputSlot className="pl-3">
           <InputIcon as={SearchIcon} />
