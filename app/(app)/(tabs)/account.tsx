@@ -32,7 +32,7 @@ export default function AccountScreen() {
         <Divider orientation="vertical" className="mx-4"></Divider>
         <Link href="/sounds" asChild>
           <TouchableOpacity>
-            <Text><Text>0</Text> Sons</Text>
+            <Text><Text>0</Text> Jams</Text>
           </TouchableOpacity>
         </Link>
       </HStack>

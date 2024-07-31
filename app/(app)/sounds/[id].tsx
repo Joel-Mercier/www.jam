@@ -21,7 +21,7 @@ export default function SoundScreen() {
 
   return (
     <ScrollView>
-      <Box className="h-[100%] px-4 mt-8 mb-8" style={{ paddingTop: headerHeight }}>
+      <Box className="h-full px-4 mt-8 mb-8" style={{ paddingTop: headerHeight }}>
         <Heading size="2xl" className="mb-2">My awesome song collab with www.jam</Heading>
         <Text size="lg">By Joel Mercier</Text>
         <HStack className="items-center justify-between">
@@ -68,6 +68,12 @@ export default function SoundScreen() {
         </VStack>
         <Heading size="lg" className="mb-2 mt-4">About</Heading>
         <Text>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem fugit dolorem cum officiis nihil quas laborum vero totam. In, inventore doloribus quasi ad accusantium dolorem repudiandae eum alias dolore et.</Text>
+        <Text>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem fugit dolorem cum officiis nihil quas laborum vero totam. In, inventore doloribus quasi ad accusantium dolorem repudiandae eum alias dolore et.</Text>
+        <Text>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem fugit dolorem cum officiis nihil quas laborum vero totam. In, inventore doloribus quasi ad accusantium dolorem repudiandae eum alias dolore et.</Text>
+
+        <Text>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem fugit dolorem cum officiis nihil quas laborum vero totam. In, inventore doloribus quasi ad accusantium dolorem repudiandae eum alias dolore et.</Text>
+        <Text>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem fugit dolorem cum officiis nihil quas laborum vero totam. In, inventore doloribus quasi ad accusantium dolorem repudiandae eum alias dolore et.</Text>
+
         <Heading size="lg" className="mb-2 mt-4">Vibe</Heading>
         <HStack space="sm" className="flex-wrap flex-row items-center mt-4">
           <Badge size="md" variant="outline" action="muted" className="rounded-none">

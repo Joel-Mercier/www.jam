@@ -65,9 +65,9 @@ export default function RootLayout() {
                   <Stack.Screen name="(app)" options={{ headerShown: false }} />
                   <Stack.Screen name="+not-found" />
                   <Stack.Screen name="start" options={{ headerShown: false }} />
-                  <Stack.Screen name="login" options={{ title: "Login", headerShown: true }} />
-                  <Stack.Screen name="sign-up" options={{ title: "Registration", headerShown: true }} />
-                  <Stack.Screen name="lost-password" options={{ title: "Lost password", headerShown: true }} />
+                  <Stack.Screen name="login" options={{ title: "Login", headerShown: true, headerTransparent: true }} />
+                  <Stack.Screen name="sign-up" options={{ title: "Registration", headerShown: true, headerTransparent: true }} />
+                  <Stack.Screen name="lost-password" options={{ title: "Lost password", headerShown: true, headerTransparent: true }} />
                 </Stack>
               </SessionProvider>
             </ThemeProvider>

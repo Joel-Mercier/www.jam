@@ -2,7 +2,7 @@ import { HStack } from "@/components/ui/hstack";
 import { Link, Tabs } from 'expo-router';
 import React from 'react';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { AudioLines, Bell, Heart, Home, Plus, Search, Settings, User } from 'lucide-react-native';
+import { AudioLines, Bell, Heart, Home, Plus, Search, Settings, SquarePlus, User } from 'lucide-react-native';
 import { TouchableOpacity } from 'react-native';
 
 export default function TabLayout() {
@@ -47,9 +47,18 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="new-sound"
+        options={{
+          title: "Create a new jam",
+          tabBarIcon: ({ color, focused }) => (
+            <SquarePlus color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="sounds"
         options={{
-          title: 'My sounds',
+          title: 'My jams',
           tabBarIcon: ({ color, focused }) => (
             <AudioLines color={color} />
           ),

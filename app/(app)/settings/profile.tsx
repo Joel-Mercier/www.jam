@@ -11,17 +11,15 @@ import {
   FormControlLabel,
   FormControlLabelText,
 } from "@/components/ui/form-control";
-import { Checkbox, CheckboxIcon, CheckboxIndicator, CheckboxLabel } from "@/components/ui/checkbox";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Box } from "@/components/ui/box";
 import { AlertCircleIcon } from "@/components/ui/icon";
-import { CheckIcon, EyeIcon, EyeOffIcon } from "lucide-react-native";
+import { EyeIcon, EyeOffIcon } from "lucide-react-native";
 import { useState } from "react";
 import { useHeaderHeight } from '@react-navigation/elements';
 
-export default function SignupScreen() {
+export default function ProfileScreen() {
   const [showPassword, setShowPassword] = useState(false)
-  const [showPasswordConfirmation, setShowPasswordConfirmation] = useState(false)
   const headerHeight = useHeaderHeight();
 
   const togglePassword = () => {
@@ -30,16 +28,10 @@ export default function SignupScreen() {
     })
   }
 
-  const togglePasswordConfirmation = () => {
-    setShowPasswordConfirmation((showState) => {
-      return !showState
-    })
-  }
-
   return (
     <ScrollView>
-      <Box className="h-[100%] px-4 mt-8 mb-8" style={{ paddingTop: headerHeight }}>
-        <VStack className="w-full">
+      <Box className="h-full px-4 mt-8 mb-8" style={{ paddingTop: headerHeight }}>
+        <VStack>
           <FormControl
             size="lg"
             isDisabled={false}
@@ -144,22 +136,11 @@ export default function SignupScreen() {
             className="mb-4"
           >
             <FormControlLabel className="mb-1">
-              <FormControlLabelText>Password confirmation</FormControlLabelText>
+              <FormControlLabelText>Phone</FormControlLabelText>
             </FormControlLabel>
             <Input>
-              <InputField type={showPasswordConfirmation ? "text" : "password"} defaultValue="12345" placeholder="Password confirmation" />
-              <InputSlot onPress={togglePasswordConfirmation} className="pr-3">
-                <InputIcon
-                  as={showPasswordConfirmation ? EyeIcon : EyeOffIcon}
-                  className="text-darkBlue-500"
-                />
-              </InputSlot>
+              <InputField type="text" defaultValue="+33611223344" placeholder="Phone" />
             </Input>
-            <FormControlHelper>
-              <FormControlHelperText>
-                Must be identical to password.
-              </FormControlHelperText>
-            </FormControlHelper>
             <FormControlError>
               <FormControlErrorIcon as={AlertCircleIcon} />
               <FormControlErrorText>
@@ -167,12 +148,7 @@ export default function SignupScreen() {
               </FormControlErrorText>
             </FormControlError>
           </FormControl>
-          <Checkbox size="md" isInvalid={false} isDisabled={false} className="mb-8" value="consent">
-            <CheckboxIndicator className="mr-2">
-              <CheckboxIcon as={CheckIcon} />
-            </CheckboxIndicator>
-            <CheckboxLabel>I agree with the terms & conditions</CheckboxLabel>
-          </Checkbox>
+
           <Button
             size="lg"
             variant="solid"
@@ -180,11 +156,10 @@ export default function SignupScreen() {
             isDisabled={false}
             isFocusVisible={false}
           >
-            <ButtonText>Sign up</ButtonText>
+            <ButtonText>Save</ButtonText>
           </Button>
         </VStack>
-
-      </Box >
+      </Box>
     </ScrollView>
 
   );

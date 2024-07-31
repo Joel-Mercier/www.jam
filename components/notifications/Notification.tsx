@@ -21,7 +21,7 @@ export default function Notification({ notification }) {
               <Heading size="md" numberOfLines={1}>
                 Joel Mercier
               </Heading>
-              <Text numberOfLines={1} className="mb-0">by Joel Mercier</Text>
+              <Text numberOfLines={1} className="mb-0">has contributed to your sound</Text>
             </VStack>
 
           </HStack>

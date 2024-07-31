@@ -13,8 +13,10 @@ export default function SettingsLayout() {
       }}
     >
       <Stack.Screen name="index" options={{ title: "Settings" }} />
+      <Stack.Screen name="profile" options={{ title: "Edit your profile" }} />
       <Stack.Screen name="privacy" options={{ title: "Privacy" }} />
       <Stack.Screen name="terms-and-conditions" options={{ title: "Terms and conditions" }} />
+      <Stack.Screen name="about" options={{ title: "About" }} />
     </Stack>
   );
 }

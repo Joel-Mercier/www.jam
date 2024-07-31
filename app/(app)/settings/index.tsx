@@ -19,7 +19,7 @@ export default function SettingsScreen() {
     <ScrollView className="h-full mt-8">
       <VStack className="px-4 justify-between h-full">
         <VStack>
-          <Link href={"/"} asChild>
+          <Link href={"/settings/profile"} asChild>
             <TouchableOpacity>
               <HStack space="md" className="items-center py-6 justify-between w-full">
                 <HStack className="items-center">
