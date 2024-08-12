@@ -24,7 +24,7 @@ export default function AppLayout() {
       <Stack.Screen name="followed" options={{ title: "Follows" }} />
       <Stack.Screen name="followers" options={{ title: "Followers" }} />
       <Stack.Screen name="notifications" options={{ title: "Notifications" }} />
-      <Stack.Screen name="sounds/[id]" options={{ headerTitle: "", headerTransparent: true }} />
+      <Stack.Screen name="jams/[id]" options={{ headerTitle: "", headerTransparent: true }} />
       <Stack.Screen name="users/[id]" options={{ headerTitle: "", headerTransparent: true }} />
     </Stack>
   );

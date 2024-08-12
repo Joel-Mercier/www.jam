@@ -1,4 +1,4 @@
-import Sound from "@/components/sounds/Sound";
+import Jam from "@/components/jams/Jam";
 import { Avatar, AvatarFallbackText } from "@/components/ui/avatar";
 import { Box } from "@/components/ui/box";
 import { Button, ButtonText } from "@/components/ui/button";
@@ -58,12 +58,12 @@ export default function UserScreen() {
           </Box>
         </Center>
         <Heading size="lg" className="mb-2 mt-4">Sounds</Heading>
-        <Sound sound={null} />
-        <Sound sound={null} />
-        <Sound sound={null} />
+        <Jam jam={null} />
+        <Jam jam={null} />
+        <Jam jam={null} />
         <Heading size="lg" className="mb-2 mt-4">Contributed to</Heading>
-        <Sound sound={null} />
-        <Sound sound={null} />
+        <Jam jam={null} />
+        <Jam jam={null} />
         <Heading size="lg" className="mb-2 mt-4">About</Heading>
         <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, officia natus aut ipsa eos exercitationem corrupti magnam, magni nam a hic! Corrupti magnam, voluptas illo placeat dolor minima consectetur dolore.</Text>
       </Box>

@@ -2,11 +2,11 @@ import { VStack } from "@/components/ui/vstack";
 import { Toast, ToastDescription, ToastTitle, useToast } from "@/components/ui/toast";
 import { Spinner } from "@/components/ui/spinner";
 import { Box } from "@/components/ui/box";
-import SoundList from "@/components/sounds/SoundList";
-import { useSounds } from "@/hooks/www.jam/useSounds";
+import SoundList from "@/components/jams/JamList";
+import { useSounds } from "@/hooks/www.jam/useJams";
 import React, { useEffect } from "react";
 
-export default function SoundsScreen() {
+export default function JamsScreen() {
   const toast = useToast()
   const { data: sounds, isLoading, isError } = useSounds({})
 
@@ -35,7 +35,7 @@ export default function SoundsScreen() {
 
   return (
     <Box className="h-[100%] px-4 mt-8">
-      <SoundList sounds={[null, null, null]} />
+      <SoundList jams={[null, null, null]} />
     </Box>
   );
 }

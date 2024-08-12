@@ -1,10 +1,10 @@
 import { Box } from "@/components/ui/box";
-import SoundList from "@/components/sounds/SoundList";
+import JamList from "@/components/jams/JamList";
 
 export default function FavoritesScreen() {
   return (
     <Box className="px-4 mt-8">
-      <SoundList sounds={[]} />
+      <JamList jams={[]} />
     </Box>
   );
 }

@@ -12,8 +12,8 @@ import {
   ActionsheetItemText,
 } from "@/components/ui/actionsheet";
 
-import SoundList from "@/components/sounds/SoundList";
-import sounds from "./sounds";
+import SoundList from "@/components/jams/JamList";
+import sounds from "./jams";
 import { Settings2 } from "lucide-react-native";
 import { useState } from "react";
 import { TouchableOpacity } from "react-native";
@@ -35,7 +35,7 @@ export default function SearchScreen() {
           </TouchableOpacity>
         </InputSlot>
       </Input>
-      <SoundList sounds={sounds} />
+      <SoundList jams={sounds} />
       <Actionsheet isOpen={showActionsheet} onClose={handleClose} className="z-999">
         <ActionsheetBackdrop />
         <ActionsheetContent className="h-72 z-999">

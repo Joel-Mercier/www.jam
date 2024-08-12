@@ -1,8 +1,10 @@
 import { useStorageState } from '@/hooks/useStorageState';
+import { useLogin } from '@/hooks/www.jam/useAuth';
+import { router } from 'expo-router';
 import { createContext, useContext } from 'react';
 
 const AuthContext = createContext<{
-  signIn: () => void;
+  signIn: (params) => void;
   signOut: () => void;
   session?: string | null;
   isLoading: boolean;
@@ -27,13 +29,25 @@ export function useSession() {
 
 export function SessionProvider(props: React.PropsWithChildren) {
   const [[isLoading, session], setSession] = useStorageState('session');
+  const doLogin = useLogin()
 
   return (
     <AuthContext.Provider
       value={{
-        signIn: () => {
+        signIn: (params) => {
           // Perform sign-in logic here
-          setSession('xxx');
+          console.log('signIn', params)
+
+          doLogin.mutate(params, {
+            onSuccess: (data) => {
+              console.log('success', data)
+              setSession(data);
+              router.replace('/')
+            },
+            onError: (error) => {
+              console.log('error', error.message)
+            }
+          })
         },
         signOut: () => {
           setSession(null);

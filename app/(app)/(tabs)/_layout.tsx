@@ -47,7 +47,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="new-sound"
+        name="new-jam"
         options={{
           title: "Create a new jam",
           tabBarIcon: ({ color, focused }) => (
@@ -56,7 +56,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="sounds"
+        name="jams"
         options={{
           title: 'My jams',
           tabBarIcon: ({ color, focused }) => (

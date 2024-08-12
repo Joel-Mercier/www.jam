@@ -15,7 +15,7 @@ import { useHeaderHeight } from '@react-navigation/elements';
 
 const collaborators = [{ id: 1, name: "John Doe" }, { id: 2, name: "John Doe" }, { id: 3, name: "John Doe" }]
 
-export default function SoundScreen() {
+export default function JamScreen() {
   const { id } = useLocalSearchParams();
   const headerHeight = useHeaderHeight();
 

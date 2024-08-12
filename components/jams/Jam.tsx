@@ -8,7 +8,7 @@ import { Avatar, AvatarFallbackText, AvatarGroup } from "@/components/ui/avatar"
 import { Link } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
-export default function Sound({ sound, horizontal = false, isLast = false }) {
+export default function Jam({ jam, horizontal = false, isLast = false }) {
   return (
     <Link
       href={{
