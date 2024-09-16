@@ -19,6 +19,7 @@ import { Box } from "@/components/ui/box";
 import { AlertCircleIcon } from "@/components/ui/icon";
 import { useSession } from "@/contexts/auth";
 import { Link, router } from "expo-router";
+import { useJams } from "@/hooks/www.jam/useJams";
 
 type LoginInputs = {
   email: string;
@@ -26,6 +27,8 @@ type LoginInputs = {
 }
 
 export default function LoginScreen() {
+  const { data, isLoading, isError } = useJams({})
+  console.log(data)
   const { signIn } = useSession();
   const {
     control,
@@ -33,7 +36,7 @@ export default function LoginScreen() {
     formState: { errors },
   } = useForm<LoginInputs>({
     defaultValues: {
-      email: "jomercier@sfr.fr",
+      email: "admin@wwwjam.com",
       password: "abcd1234"
     }
   })

@@ -3,12 +3,12 @@ import { Toast, ToastDescription, ToastTitle, useToast } from "@/components/ui/t
 import { Spinner } from "@/components/ui/spinner";
 import { Box } from "@/components/ui/box";
 import SoundList from "@/components/jams/JamList";
-import { useSounds } from "@/hooks/www.jam/useJams";
+import { useJams } from "@/hooks/www.jam/useJams";
 import React, { useEffect } from "react";
 
 export default function JamsScreen() {
   const toast = useToast()
-  const { data: sounds, isLoading, isError } = useSounds({})
+  const { data: sounds, isLoading, isError } = useJams({})
 
   useEffect(() => {
     if (isError) {
