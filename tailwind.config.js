@@ -171,7 +171,7 @@ module.exports = {
           muted: 'rgb(var(--color-background-muted)/<alpha-value>)',
           success: 'rgb(var(--color-background-success)/<alpha-value>)',
           info: 'rgb(var(--color-background-info)/<alpha-value>)',
-          light: '#FBFBFB',
+          light: '#FFFFFF',
           dark: '#181719',
         },
 
@@ -588,7 +588,7 @@ module.exports = {
         heading: undefined,
         body: undefined,
         mono: undefined,
-        roboto: ['Roboto', 'sans-serif'],
+        nunito: ['Nunito', 'sans-serif'],
       },
 
       fontWeight: {

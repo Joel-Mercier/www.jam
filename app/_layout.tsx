@@ -7,18 +7,19 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 import {
   useFonts,
-  Inter_400Regular,
-  Inter_500Medium,
-  Inter_600SemiBold,
-  Inter_700Bold,
-  Inter_900Black,
-} from "@expo-google-fonts/inter";
+  Nunito_400Regular,
+  Nunito_500Medium,
+  Nunito_600SemiBold,
+  Nunito_700Bold,
+  Nunito_900Black,
+} from "@expo-google-fonts/nunito";
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useReactQueryDevTools } from '@dev-plugins/react-query';
 import { ToastProvider } from "@gluestack-ui/toast"
 import { OverlayProvider } from "@gluestack-ui/overlay"
 import { SessionProvider } from '@/contexts/auth';
+import { View } from 'react-native';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -29,11 +30,11 @@ export default function RootLayout() {
   useReactQueryDevTools(queryClient);
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
-    Inter_900Black,
+    Nunito_400Regular,
+    Nunito_500Medium,
+    Nunito_600SemiBold,
+    Nunito_700Bold,
+    Nunito_900Black,
   });
 
   useEffect(() => {
@@ -56,9 +57,7 @@ export default function RootLayout() {
                 <Stack
                   screenOptions={{
                     headerStyle: {
-                      // backgroundColor: "transparent",
-                      // borderWidth: 0,
-                      // elevation: 0
+                      backgroundColor: "transparent",
                     }
                   }}
                 >

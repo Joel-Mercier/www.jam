@@ -108,7 +108,7 @@ cssInterop(PrimitiveIcon, {
 });
 
 const buttonStyle = tva({
-  base: 'group/button rounded bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
+  base: 'group/button rounded-full bg-primary-500 flex-row items-center justify-center data-[focus-visible=true]:web:outline-none data-[focus-visible=true]:web:ring-2 data-[disabled=true]:opacity-40',
   variants: {
     action: {
       primary:
@@ -194,9 +194,9 @@ const buttonTextStyle = tva({
   parentVariants: {
     action: {
       primary:
-        'text-primary-600 data-[hover=true]:text-primary-600 data-[active=true]:text-primary-700',
+        'text-primary-600 data-[hover=true]:text-primary-600 data-[active=true]:text-primary-700 uppercase',
       secondary:
-        'text-secondary-600 data-[hover=true]:text-secondary-600 data-[active=true]:text-secondary-700',
+        'text-secondary-600 data-[hover=true]:text-secondary-600 data-[active=true]:text-secondary-700 uppercase',
       positive:
         'text-success-600 data-[hover=true]:text-success-600 data-[active=true]:text-success-700',
       negative:
