@@ -19,12 +19,18 @@ export default function AppLayout() {
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="discover" options={{ title: "Discover" }} />
+      <Stack.Screen name="top-authors" options={{ title: "Top authors" }} />
+      <Stack.Screen name="top-collections" options={{ title: "Top collections" }} />
+      <Stack.Screen name="top-picks" options={{ title: "Top picks" }} />
+      <Stack.Screen name="trending-quizzes" options={{ title: "Trending quizzes" }} />
       <Stack.Screen name="settings" options={{ title: "Settings", headerShown: false }} />
       <Stack.Screen name="favorites" options={{ title: "Favorites" }} />
       <Stack.Screen name="followed" options={{ title: "Follows" }} />
       <Stack.Screen name="followers" options={{ title: "Followers" }} />
       <Stack.Screen name="notifications" options={{ title: "Notifications" }} />
-      <Stack.Screen name="jams/[id]" options={{ headerTitle: "", headerTransparent: true }} />
+      <Stack.Screen name="quizzes/[id]" options={{ headerTitle: "", headerTransparent: true }} />
+      <Stack.Screen name="collections/[id]" options={{ headerTitle: "", headerTransparent: true }} />
       <Stack.Screen name="users/[id]" options={{ headerTitle: "", headerTransparent: true }} />
     </Stack>
   );

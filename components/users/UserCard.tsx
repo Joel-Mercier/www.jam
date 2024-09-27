@@ -12,9 +12,9 @@ export default function UserCard({ user, horizontal = false, isLast = false }) {
   return (
     <Link href={{ pathname: "/users/[id]", params: { id: "1" } }} asChild>
       <TouchableOpacity>
-        <Card size="sm" variant="ghost" className={` ${horizontal && !isLast ? "mr-4" : "mr-0"} `}>
+        <Card size="sm" variant="ghost" className={` ${horizontal && !isLast ? "mr-2" : "mr-0"} `}>
           <VStack className="items-center">
-            <Avatar>
+            <Avatar size="lg">
               <AvatarFallbackText>Joel Mercier</AvatarFallbackText>
             </Avatar>
             <Heading size="md" numberOfLines={1} className="mt-2">

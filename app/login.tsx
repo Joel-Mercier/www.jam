@@ -1,7 +1,7 @@
 import { VStack } from "@/components/ui/vstack";
 import { LinkText } from "@/components/ui/link";
 import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
-import { Input, InputField } from "@/components/ui/input";
+import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 
 import {
   FormControl,
@@ -19,7 +19,13 @@ import { Box } from "@/components/ui/box";
 import { AlertCircleIcon } from "@/components/ui/icon";
 import { useSession } from "@/contexts/auth";
 import { Link, router } from "expo-router";
-import { useJams } from "@/hooks/www.jam/useJams";
+import { Heading } from "@/components/ui/heading";
+import { SafeAreaView } from "@/components/ui/safe-area-view";
+import { useState } from "react";
+import { EyeIcon, EyeOffIcon } from "lucide-react-native";
+import { useHeaderHeight } from '@react-navigation/elements';
+import { Center } from "@/components/ui/center";
+import { Divider } from "@/components/ui/divider";
 
 type LoginInputs = {
   email: string;
@@ -27,8 +33,8 @@ type LoginInputs = {
 }
 
 export default function LoginScreen() {
-  const { data, isLoading, isError } = useJams({})
-  console.log(data)
+  const [showPassword, setShowPassword] = useState<boolean>(false)
+  const headerHeight = useHeaderHeight();
   const { signIn } = useSession();
   const {
     control,
@@ -41,84 +47,109 @@ export default function LoginScreen() {
     }
   })
 
+  const togglePassword = () => {
+    setShowPassword((showState) => {
+      return !showState
+    })
+  }
+
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
     signIn(data);
   }
 
   return (
-    <KeyboardAvoidingView>
-      <Box className="px-4 items-center justify-center h-full">
-        <VStack className="w-80">
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            name='email'
-            render={({ field: { onChange, onBlur, value } }) => (
-              <FormControl
-                size="lg"
-                isDisabled={false}
-                isInvalid={!!errors.email}
-                isReadOnly={false}
-                isRequired={true}
-                className="mb-4"
-              >
-                <FormControlLabel className="mb-1">
-                  <FormControlLabelText>Email</FormControlLabelText>
-                </FormControlLabel>
-                <Input>
-                  <InputField type="text" placeholder="Email" onChangeText={onChange} onBlur={onBlur} value={value} />
-                </Input>
-                {errors.email &&
-                  <FormControlError>
-                    <FormControlErrorIcon as={AlertCircleIcon} />
-                    <FormControlErrorText>
-                      Error
-                    </FormControlErrorText>
-                  </FormControlError>
-                }
-              </FormControl>
-            )}
-          />
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            name='password'
-            render={({ field: { onChange, onBlur, value } }) => (
-              <FormControl
-                size="lg"
-                isDisabled={false}
-                isInvalid={false}
-                isReadOnly={false}
-                isRequired={true}
-                className="mb-8"
-              >
-                <FormControlLabel className="mb-1">
-                  <FormControlLabelText>Password</FormControlLabelText>
-                </FormControlLabel>
-                <Input>
-                  <InputField type="password" placeholder="Password" onChangeText={onChange} onBlur={onBlur} value={value} />
-                </Input>
-                <FormControlHelper>
-                  <FormControlHelperText>
-                    Must be at least 6 characters.
-                  </FormControlHelperText>
-                </FormControlHelper>
-                {errors.password &&
+    <SafeAreaView style={{ flex: 1}}>
+      <KeyboardAvoidingView style={{ flex: 1 }}>
+        <Box className="px-4" style={{ paddingTop: headerHeight }}>
+          <VStack>
+            <Heading size="2xl" className="mb-4">Hello there</Heading>
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              name='email'
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormControl
+                  size="lg"
+                  isDisabled={false}
+                  isInvalid={!!errors.email}
+                  isReadOnly={false}
+                  isRequired={true}
+                  className="mb-4"
+                >
+                  <FormControlLabel className="mb-1">
+                    <FormControlLabelText>Email</FormControlLabelText>
+                  </FormControlLabel>
+                  <Input variant="underlined">
+                    <InputField type="text" placeholder="Email" onChangeText={onChange} onBlur={onBlur} value={value} size="xl" className="text-xl"  />
+                  </Input>
+                  {errors.email &&
+                    <FormControlError>
+                      <FormControlErrorIcon as={AlertCircleIcon} />
+                      <FormControlErrorText>
+                        Error
+                      </FormControlErrorText>
+                    </FormControlError>
+                  }
+                </FormControl>
+              )}
+            />
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              name='password'
+              render={({ field: { onChange, onBlur, value } }) => (
+                <FormControl
+                  size="lg"
+                  isDisabled={false}
+                  isInvalid={false}
+                  isReadOnly={false}
+                  isRequired={true}
+                  className="mb-8"
+                >
+                  <FormControlLabel className="mb-1">
+                    <FormControlLabelText>Password</FormControlLabelText>
+                  </FormControlLabel>
+                  <Input variant="underlined">
+                    <InputField type={showPassword ? "text" : "password"} placeholder="Password" onChangeText={onChange} onBlur={onBlur} value={value} size="xl" className="text-xl"  />
+                    <InputSlot onPress={togglePassword} className="pr-3">
+                      <InputIcon
+                        as={showPassword ? EyeIcon : EyeOffIcon}
+                        className="text-primary-500"
+                      />
+                    </InputSlot>
+                  </Input>
+                  <FormControlHelper>
+                    <FormControlHelperText>
+                      Must be at least 6 characters.
+                    </FormControlHelperText>
+                  </FormControlHelper>
+                  {errors.password &&
 
-                  <FormControlError>
-                    <FormControlErrorIcon as={AlertCircleIcon} />
-                    <FormControlErrorText>
-                      At least 6 characters are required.
-                    </FormControlErrorText>
-                  </FormControlError>
-                }
-              </FormControl>
-            )}
-          />
+                    <FormControlError>
+                      <FormControlErrorIcon as={AlertCircleIcon} />
+                      <FormControlErrorText>
+                        At least 6 characters are required.
+                      </FormControlErrorText>
+                    </FormControlError>
+                  }
+                </FormControl>
+              )}
+            />
+            <Divider />
+            <Center className="mt-8">
+              <Link href="/lost-password" asChild>
+                <Button size="lg" action="primary" variant="link">
+                  <ButtonText>Forgot password ?</ButtonText>
+                </Button>
+              </Link>
+            </Center>
+          </VStack>
+        </Box>
+        <Box className="absolute bottom-0 left-0 right-0 min-h-24 bg-white justify-center border-t-2 border-background-100 px-4">
           <Button
             size="lg"
             variant="solid"
@@ -126,15 +157,11 @@ export default function LoginScreen() {
             isDisabled={false}
             isFocusVisible={false}
             onPress={handleSubmit(onSubmit)}
-            className="mb-8"
           >
-            <ButtonText>Sign in</ButtonText>
+            <ButtonText className="uppercase">Sign in</ButtonText>
           </Button>
-          <Link href="/lost-password">
-            <LinkText>Password forgotten ?</LinkText>
-          </Link>
-        </VStack>
-      </Box>
-    </KeyboardAvoidingView>
+        </Box>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }

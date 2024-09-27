@@ -15,7 +15,6 @@ import { useState } from "react";
 export default function StartScreen() {
   const [index, setIndex] = useState<number>(0);
 
-  console.log(index)
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <VStack className="flex-1" space="xl">
@@ -46,12 +45,12 @@ export default function StartScreen() {
           <Divider />
           <Link href="/sign-up" asChild>
             <Button size="xl" variant="solid" action="primary">
-              <ButtonText>Get started</ButtonText>
+              <ButtonText className="uppercase text-base">Get started</ButtonText>
             </Button>
           </Link>
           <Link href="/login" asChild>
             <Button size="xl" variant="solid" action="secondary">
-              <ButtonText>I already have an account</ButtonText>
+              <ButtonText className="uppercase text-base">I already have an account</ButtonText>
             </Button>
           </Link>
         </VStack>

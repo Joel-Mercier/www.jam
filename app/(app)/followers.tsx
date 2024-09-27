@@ -1,7 +1,6 @@
 import { SearchIcon } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Box } from "@/components/ui/box";
-import UserList from "@/components/users/UserList";
 
 export default function FollowersScreen() {
   return (
@@ -12,7 +11,6 @@ export default function FollowersScreen() {
         </InputSlot>
         <InputField placeholder="Search follower" />
       </Input>
-      <UserList users={[]} />
     </Box>
   );
 }

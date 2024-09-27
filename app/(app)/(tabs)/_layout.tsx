@@ -2,8 +2,9 @@ import { HStack } from "@/components/ui/hstack";
 import { Link, Tabs } from 'expo-router';
 import React from 'react';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { AudioLines, Bell, Heart, Home, Plus, Search, Settings, SquarePlus, User } from 'lucide-react-native';
+import { Bell, Gamepad2, Heart, Home, LayoutGrid, Plus, Settings, SquarePlus, User } from 'lucide-react-native';
 import { TouchableOpacity } from 'react-native';
+import colors from 'tailwindcss/colors';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -11,9 +12,10 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarShowLabel: false,
+        tabBarActiveTintColor: '#6949FF',
+        tabBarShowLabel: true,
         headerStyle: {
-          backgroundColor: "transparent",
+          backgroundColor: colors.white,
           borderWidth: 0,
           elevation: 0
         }
@@ -21,7 +23,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Bonjour Joel',
+          title: 'Hi Joel',
+          tabBarLabel: 'Home',
           tabBarIcon: ({ color, focused }) => (
             <Home color={color} />
           ),
@@ -37,30 +40,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="search"
+        name="library"
         options={{
-          title: 'Search',
+          title: 'Library',
           tabBarIcon: ({ color, focused }) => (
-            <Search color={color} />
-          ),
-          headerShown: true,
-        }}
-      />
-      <Tabs.Screen
-        name="new-jam"
-        options={{
-          title: "Create a new jam",
-          tabBarIcon: ({ color, focused }) => (
-            <SquarePlus color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="jams"
-        options={{
-          title: 'My jams',
-          tabBarIcon: ({ color, focused }) => (
-            <AudioLines color={color} />
+            <LayoutGrid color={color} />
           ),
           headerShown: true,
           headerRight: ({ }) => (
@@ -75,9 +59,31 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="search"
+        options={{
+          title: 'Search',
+          tabBarLabel: 'Join',
+          tabBarIcon: ({ color, focused }) => (
+            <Gamepad2 color={color} />
+          ),
+          headerShown: true,
+        }}
+      />
+      <Tabs.Screen
+        name="new-quiz"
+        options={{
+          title: "Create a new quiz",
+          tabBarLabel: 'Create',
+          tabBarIcon: ({ color, focused }) => (
+            <SquarePlus color={color} />
+          ),
+        }}
+      />
+      
+      <Tabs.Screen
         name="account"
         options={{
-          title: 'Account',
+          title: 'Profile',
           headerTitle: '',
           tabBarIcon: ({ color, focused }) => (
             <User color={color} />

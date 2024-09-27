@@ -11,51 +11,62 @@ import {
   FormControlLabel,
   FormControlLabelText,
 } from "@/components/ui/form-control";
-
+import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Box } from "@/components/ui/box";
 import { AlertCircleIcon } from "@/components/ui/icon";
+import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+import { useHeaderHeight } from '@react-navigation/elements';
+import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
 
 export default function LostPasswordScreen() {
+  const headerHeight = useHeaderHeight();
   return (
-    <Box className="px-4 items-center justify-center h-full">
-      <VStack className="w-80">
-        <FormControl
-          size="lg"
-          isDisabled={false}
-          isInvalid={false}
-          isReadOnly={false}
-          isRequired={true}
-          className="mb-4"
-        >
-          <FormControlLabel className="mb-1">
-            <FormControlLabelText>Email</FormControlLabelText>
-          </FormControlLabel>
-          <Input>
-            <InputField type="text" defaultValue="hello@www.jam.com" placeholder="Email" />
-          </Input>
-          <FormControlHelper>
-            <FormControlHelperText size="sm">
-              You will receive an email containing the password reset instructions.
-            </FormControlHelperText>
-          </FormControlHelper>
-          <FormControlError>
-            <FormControlErrorIcon as={AlertCircleIcon} />
-            <FormControlErrorText>
-              The email you provided doesn't seem correct.
-            </FormControlErrorText>
-          </FormControlError>
-        </FormControl>
-        <Button
-          size="lg"
-          variant="solid"
-          action="primary"
-          isDisabled={false}
-          isFocusVisible={false}
-        >
-          <ButtonText>Send</ButtonText>
-        </Button>
-      </VStack>
-    </Box>
+    <SafeAreaView style={{ flex: 1 }}>
+      <KeyboardAvoidingView style={{ flex: 1 }}>
+        <Box className="px-4" style={{ paddingTop: headerHeight}}>
+          <VStack>
+            <Heading size="2xl" className="mb-4">
+              Forgot your password?
+            </Heading>
+            <Text className="mb-4">Enter your email address and we will send you a link to reset your password.</Text>
+            <FormControl
+              size="lg"
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}
+              isRequired={true}
+              className="mb-4"
+            >
+              <FormControlLabel className="mb-1">
+                <FormControlLabelText>Email</FormControlLabelText>
+              </FormControlLabel>
+              <Input variant="underlined">
+                <InputField type="text" defaultValue="hello@www.jam.com" placeholder="Email" size="xl" className="text-xl"  />
+              </Input>
+              <FormControlError>
+                <FormControlErrorIcon as={AlertCircleIcon} />
+                <FormControlErrorText>
+                  The email you provided doesn't seem correct.
+                </FormControlErrorText>
+              </FormControlError>
+            </FormControl>
+            
+          </VStack>
+        </Box>
+        <Box className="absolute bottom-0 left-0 right-0 min-h-24 bg-white justify-center border-t-2 border-background-100 px-4">
+          <Button
+            size="lg"
+            variant="solid"
+            action="primary"
+            isDisabled={false}
+            isFocusVisible={false}
+          >
+            <ButtonText>Continue</ButtonText>
+          </Button>
+        </Box>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }

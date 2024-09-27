@@ -1,7 +1,6 @@
 import { SearchIcon } from "@/components/ui/icon";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { Box } from "@/components/ui/box";
-import UserList from "@/components/users/UserList";
 
 export default function FollowedScreen() {
   return (
@@ -12,7 +11,6 @@ export default function FollowedScreen() {
         </InputSlot>
         <InputField placeholder="Search follow" />
       </Input>
-      <UserList users={[]} />
     </Box>
   );
 }

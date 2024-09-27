@@ -125,7 +125,7 @@ const buttonStyle = tva({
     variant: {
       link: 'px-0',
       outline:
-        'bg-transparent border data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
+        'bg-transparent border-2 data-[hover=true]:bg-background-50 data-[active=true]:bg-transparent',
       solid: '',
     },
 
@@ -190,13 +190,13 @@ const buttonStyle = tva({
 });
 
 const buttonTextStyle = tva({
-  base: 'text-typography-0 font-semibold web:select-none',
+  base: 'text-typography-0 font-semibold web:select-none font-body',
   parentVariants: {
     action: {
       primary:
-        'text-primary-600 data-[hover=true]:text-primary-600 data-[active=true]:text-primary-700 uppercase',
+        'text-primary-600 data-[hover=true]:text-primary-600 data-[active=true]:text-primary-700',
       secondary:
-        'text-secondary-600 data-[hover=true]:text-secondary-600 data-[active=true]:text-secondary-700 uppercase',
+        'text-secondary-600 data-[hover=true]:text-secondary-600 data-[active=true]:text-secondary-700',
       positive:
         'text-success-600 data-[hover=true]:text-success-600 data-[active=true]:text-success-700',
       negative:

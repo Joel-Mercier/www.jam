@@ -10,7 +10,7 @@ import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from "@/component
 import { Textarea, TextareaInput } from "@/components/ui/textarea";
 import { ChevronDownIcon } from "lucide-react-native";
 
-export default function NewJamScreen() {
+export default function NewQuizScreen() {
 
   return (
     <ScrollView>

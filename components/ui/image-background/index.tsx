@@ -6,7 +6,7 @@ export const ImageBackground = React.forwardRef(
   ({ className, ...props }: any, ref?: any) => {
     return (
       <RNImageBackground
-        className={tva({ base: className })}
+        // className={tva({ base: className })}
         {...props}
         ref={ref}
       />
