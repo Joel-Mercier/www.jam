@@ -16,11 +16,16 @@ export default function QuizCard({ quiz, horizontal = false, isLast = false }) {
       <TouchableOpacity>
       <Card className={`p-0 mb-0 rounded-xl overflow-hidden ${horizontal ? 'mr-4 max-w-60' : 'mr-0 mb-4'}`}>
         <Box className={`${horizontal ? 'flex-col' : 'flex-row'}`}>
-          <Image
-            source={{ uri: "https://picsum.photos/200/120" }}
-            className={`${horizontal ? 'w-full h-[120px]' : 'w-[120px] h-full'}`}
-            alt="quiz"
-          />
+          <Box>
+            <Image
+              source={{ uri: "https://picsum.photos/200/120" }}
+              className={`${horizontal ? 'w-full h-[120px]' : 'w-[120px] h-full'}`}
+              alt="quiz"
+            />
+            <Box className="absolute bottom-4 right-4 bg-primary-500 rounded-lg items-center justify-center p-1">
+              <Text className="text-sm text-white">126 Qs</Text>
+            </Box>
+          </Box>
           <VStack className={`p-4 border-2 border-b-4 border-background-50 ${horizontal ? 'border-b-4 border-t-0' : 'flex-1 border-l-0'}`}>
             <Heading className="mb-2" size="md" numberOfLines={horizontal ? 2 : 1}>This is a test quiz let's hope it works</Heading>
             {!horizontal &&

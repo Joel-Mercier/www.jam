@@ -151,7 +151,7 @@ export default function LoginScreen() {
         </Box>
         <Box className="absolute bottom-0 left-0 right-0 min-h-24 bg-white justify-center border-t-2 border-background-100 px-4">
           <Button
-            size="lg"
+            size="xl"
             variant="solid"
             action="primary"
             isDisabled={false}

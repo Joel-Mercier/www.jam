@@ -3,7 +3,7 @@ import QuizCard from "@/components/quizzes/QuizCard";
 import { Box } from "@/components/ui/box";
 import { ButtonText, ButtonIcon, Button } from "@/components/ui/button";
 import { Center } from "@/components/ui/center";
-import { Fab, FabIcon } from "@/components/ui/fab";
+import { Fab } from "@/components/ui/fab";
 import { Heading } from "@/components/ui/heading";
 import { HStack } from "@/components/ui/hstack";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
@@ -79,30 +79,28 @@ export default function LibraryScreen() {
       <PagerView style={{ flex: 1 }} initialPage={0} ref={pager} onPageSelected={handlePageSelected}>
         <Box className="">
           <HStack className="px-4 my-8 items-center justify-between">
-            <TouchableOpacity onPress={() => setSecondPage(0)}>
-              <Button
-                size="lg"
-                variant={secondPage === 0 ? "solid" : "outline"}
-                action="primary"
-                isDisabled={false}
-                isFocusVisible={false}
-                className="flex-1 mr-2"
-              >
-                <ButtonText>Quizzes</ButtonText>
-              </Button>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setSecondPage(1)}>
-              <Button
-                size="lg"
-                variant={secondPage === 1 ? "solid" : "outline"}
-                action="primary"
-                isDisabled={false}
-                isFocusVisible={false}
-                className="flex-1 ml-2"
-              >
-                <ButtonText>Collections</ButtonText>
-              </Button>
-            </TouchableOpacity>
+            <Button
+              size="lg"
+              variant={secondPage === 0 ? "solid" : "outline"}
+              action="primary"
+              isDisabled={false}
+              isFocusVisible={false}
+              className="flex-1 mr-2"
+              onPress={() => setSecondPage(0)}
+            >
+              <ButtonText>Quizzes</ButtonText>
+            </Button>
+            <Button
+              size="lg"
+              variant={secondPage === 1 ? "solid" : "outline"}
+              action="primary"
+              isDisabled={false}
+              isFocusVisible={false}
+              className="flex-1 ml-2"
+              onPress={() => setSecondPage(1)}
+            >
+              <ButtonText>Collections</ButtonText>
+            </Button>
           </HStack>
           <PagerView style={{ flex: 1 }} initialPage={0} ref={secondPager} onPageSelected={handleSecondPageSelected}>
             <FlashList
@@ -122,7 +120,7 @@ export default function LibraryScreen() {
               )}
             />
             <Box>
-              <Link href="/" asChild>
+              <Link href="/new-collection" asChild>
                 <Fab
                   size="lg"
                   placement="bottom right"

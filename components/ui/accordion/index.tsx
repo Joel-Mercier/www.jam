@@ -39,7 +39,7 @@ const accordionItemStyle = tva({
   },
 });
 const accordionTitleTextStyle = tva({
-  base: 'text-typography-900 font-bold flex-1 text-left',
+  base: 'text-typography-900 font-bold flex-1 text-left font-body',
   parentVariants: {
     size: {
       sm: 'text-sm',
@@ -62,7 +62,7 @@ const accordionIconStyle = tva({
   },
 });
 const accordionContentTextStyle = tva({
-  base: 'text-typography-700 font-normal',
+  base: 'text-typography-700 font-normal font-body',
   parentVariants: {
     size: {
       sm: 'text-sm ',

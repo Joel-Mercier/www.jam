@@ -189,7 +189,7 @@ export default function SignupScreen() {
         </ScrollView>
         <Box className="min-h-24 bg-white justify-center border-t-2 border-background-100 px-4">
           <Button
-            size="lg"
+            size="xl"
             variant="solid"
             action="primary"
             isDisabled={false}

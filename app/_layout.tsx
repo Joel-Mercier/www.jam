@@ -59,6 +59,7 @@ export default function RootLayout() {
               <SessionProvider>
                 <Stack
                   screenOptions={{
+                    headerTintColor: colorScheme === 'dark' ? '#FFF' : '#181A20',
                     contentStyle: { backgroundColor: colorScheme === 'dark' ? '#181A20' : colors.white },
                     headerTitle: '',
                     headerStyle: {
