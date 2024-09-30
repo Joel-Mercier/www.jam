@@ -1,114 +1,197 @@
-import { Box } from "@/components/ui/box";
 import { Button, ButtonText } from "@/components/ui/button";
-import { Center } from "@/components/ui/center";
-import { FormControl, FormControlHelper, FormControlHelperText, FormControlLabel, FormControlLabelText } from "@/components/ui/form-control";
+import { FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlHelper, FormControlHelperText, FormControlLabel, FormControlLabelText } from "@/components/ui/form-control";
+import { HStack } from "@/components/ui/hstack";
 import { Input, InputField } from "@/components/ui/input";
 import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
+import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { ScrollView } from "@/components/ui/scroll-view";
 import { Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectIcon, SelectInput, SelectItem, SelectPortal, SelectTrigger } from "@/components/ui/select";
-import { Slider, SliderFilledTrack, SliderThumb, SliderTrack } from "@/components/ui/slider";
-import { Textarea, TextareaInput } from "@/components/ui/textarea";
-import { ChevronDownIcon } from "lucide-react-native";
+import { VStack } from "@/components/ui/vstack";
+import { AlertCircleIcon, ChevronDownIcon, Box } from "lucide-react-native";
 
 export default function NewQuizScreen() {
 
   return (
-    <ScrollView>
-      <KeyboardAvoidingView>
-        <Box className="h-full px-4 mt-8 mb-8">
-          <FormControl className="mb-4">
-            <FormControlLabel className="mb-1">
-              <FormControlLabelText>Name</FormControlLabelText>
-            </FormControlLabel>
-            <Input
-              variant="outline"
+    <SafeAreaView>
+      <ScrollView>
+        <KeyboardAvoidingView>
+          <VStack className="px-4 mt-8">
+            <FormControl
               size="lg"
               isDisabled={false}
               isInvalid={false}
               isReadOnly={false}
+              isRequired={true}
+              className="mb-8"
             >
-              <InputField placeholder="Enter your jam's name" />
-            </Input>
-          </FormControl>
-          <FormControl className="mb-4">
-            <FormControlLabel>
-              <FormControlLabelText>Desciption</FormControlLabelText>
-            </FormControlLabel>
-            <Textarea size="lg">
-              <TextareaInput placeholder="Tell us something about this jam" />
-            </Textarea>
-            <FormControlHelper>
-              <FormControlHelperText>Type your comment above</FormControlHelperText>
-            </FormControlHelper>
-          </FormControl>
-          <FormControl className="mb-4">
-            <FormControlLabel>
-              <FormControlLabelText>Key</FormControlLabelText>
-            </FormControlLabel>
-            <Select>
-              <SelectTrigger variant="outline" size="lg">
-                <SelectInput placeholder="Select option" />
-                <SelectIcon className="mr-3" as={ChevronDownIcon} />
-              </SelectTrigger>
-              <SelectPortal>
-                <SelectBackdrop />
-                <SelectContent>
-                  <SelectDragIndicatorWrapper>
-                    <SelectDragIndicator />
-                  </SelectDragIndicatorWrapper>
-                  <SelectItem label="UX Research" value="ux" />
-                  <SelectItem label="Web Development" value="web" />
-                  <SelectItem
-                    label="Cross Platform Development Process"
-                    value="Cross Platform Development Process"
-                  />
-                  <SelectItem label="UI Designing" value="ui" isDisabled={true} />
-                  <SelectItem label="Backend Development" value="backend" />
-                </SelectContent>
-              </SelectPortal>
-            </Select>
-          </FormControl>
-          <FormControl className="mb-4">
-            <FormControlLabel className="mb-4">
-              <FormControlLabelText>BPM</FormControlLabelText>
-            </FormControlLabel>
-            <Center>
-              <Slider
-                minValue={50}
-                maxValue={200}
-                defaultValue={130}
-                step={1}
-                size="lg"
-                orientation="horizontal"
-                isDisabled={false}
-                isReversed={false}
-              >
-                <SliderTrack>
-                  <SliderFilledTrack />
-                </SliderTrack>
-                <SliderThumb />
-              </Slider>
-            </Center>
-          </FormControl>
-          <FormControl className="mb-4">
-            <FormControlLabel className="mb-1">
-              <FormControlLabelText>Vibe</FormControlLabelText>
-            </FormControlLabel>
-            <Input
-              variant="outline"
+              <FormControlLabel className="mb-1">
+                <FormControlLabelText>Title</FormControlLabelText>
+              </FormControlLabel>
+              <Input variant="underlined">
+                <InputField type="text" placeholder="Enter a title" size="xl" className="text-xl" />
+              </Input>
+              <FormControlError>
+                <FormControlErrorIcon as={AlertCircleIcon} />
+                <FormControlErrorText>
+                  At least 3 characters are required.
+                </FormControlErrorText>
+              </FormControlError>
+            </FormControl>
+            <FormControl
               size="lg"
               isDisabled={false}
               isInvalid={false}
               isReadOnly={false}
+              isRequired={true}
+              className="mb-8"
             >
-              <InputField placeholder="What is this jam's vibe ?" />
-            </Input>
-          </FormControl>
-          <Button size="xl" variant="solid" action="primary" className="mt-8">
-            <ButtonText>Publish my jam</ButtonText>
+              <FormControlLabel className="mb-1">
+                <FormControlLabelText>Description</FormControlLabelText>
+              </FormControlLabel>
+              <Input variant="underlined">
+                <InputField type="text" placeholder="Enter a description" size="xl" className="text-xl" />
+              </Input>
+            </FormControl>
+            <FormControl
+              size="lg"
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}
+              isRequired={true}
+              className="mb-8"
+            >
+              <FormControlLabel className="mb-1">
+                <FormControlLabelText>Collection</FormControlLabelText>
+              </FormControlLabel>
+              <Select>
+                <SelectTrigger variant="underlined" size="lg">
+                  <SelectInput placeholder="Select collection" />
+                  <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                </SelectTrigger>
+                <SelectPortal>
+                  <SelectBackdrop/>
+                  <SelectContent>
+                    <SelectDragIndicatorWrapper>
+                      <SelectDragIndicator />
+                    </SelectDragIndicatorWrapper>
+                    <SelectItem label="Only me" value="private" />
+                    <SelectItem label="Anyone" value="public" />
+                  </SelectContent>
+                </SelectPortal>
+              </Select>
+            </FormControl>
+            <FormControl
+              size="lg"
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}
+              isRequired={true}
+              className="mb-8"
+            >
+              <FormControlLabel className="mb-1">
+                <FormControlLabelText>Theme</FormControlLabelText>
+              </FormControlLabel>
+              <Select>
+                <SelectTrigger variant="underlined" size="lg">
+                  <SelectInput placeholder="Select theme" />
+                  <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                </SelectTrigger>
+                <SelectPortal>
+                  <SelectBackdrop/>
+                  <SelectContent>
+                    <SelectDragIndicatorWrapper>
+                      <SelectDragIndicator />
+                    </SelectDragIndicatorWrapper>
+                    <SelectItem label="Only me" value="private" />
+                    <SelectItem label="Anyone" value="public" />
+                  </SelectContent>
+                </SelectPortal>
+              </Select>
+            </FormControl>
+            <FormControl
+              size="lg"
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}
+              isRequired={true}
+              className="mb-8"
+            >
+              <FormControlLabel className="mb-1">
+                <FormControlLabelText>Visible to</FormControlLabelText>
+              </FormControlLabel>
+              <Select>
+                <SelectTrigger variant="underlined" size="lg">
+                  <SelectInput placeholder="Select option" />
+                  <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                </SelectTrigger>
+                <SelectPortal>
+                  <SelectBackdrop/>
+                  <SelectContent>
+                    <SelectDragIndicatorWrapper>
+                      <SelectDragIndicator />
+                    </SelectDragIndicatorWrapper>
+                    <SelectItem label="Only me" value="private" />
+                    <SelectItem label="Anyone" value="public" />
+                  </SelectContent>
+                </SelectPortal>
+              </Select>
+            </FormControl>
+            <FormControl
+              size="lg"
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}
+              isRequired={true}
+              className="mb-8"
+            >
+              <FormControlLabel className="mb-1">
+                <FormControlLabelText>Visibility of quiz questions</FormControlLabelText>
+              </FormControlLabel>
+              <Select>
+                <SelectTrigger variant="underlined" size="lg">
+                  <SelectInput placeholder="Select option" />
+                  <SelectIcon className="mr-3" as={ChevronDownIcon} />
+                </SelectTrigger>
+                <SelectPortal>
+                  <SelectBackdrop/>
+                  <SelectContent>
+                    <SelectDragIndicatorWrapper>
+                      <SelectDragIndicator />
+                    </SelectDragIndicatorWrapper>
+                    <SelectItem label="Only me" value="private" />
+                    <SelectItem label="Anyone" value="public" />
+                  </SelectContent>
+                </SelectPortal>
+              </Select>
+            </FormControl>
+          </VStack>
+        </KeyboardAvoidingView>
+      </ScrollView>
+      <Box className="absolute bottom-0 left-0 right-0 min-h-24 bg-red-500 justify-center border-t-2 border-background-100 px-4">
+        <HStack className="items-center justify-between">
+          <Button
+            size="xl"
+            variant="solid"
+            action="secondary"
+            isDisabled={false}
+            isFocusVisible={false}
+            className="flex-1 mr-2"
+          >
+            <ButtonText>Save</ButtonText>
           </Button>
-        </Box>
-      </KeyboardAvoidingView>
-    </ScrollView>
+          <Button
+            size="xl"
+            variant="solid"
+            action="primary"
+            isDisabled={false}
+            isFocusVisible={false}
+            className="flex-1 ml-2"
+          >
+            <ButtonText>Add question</ButtonText>
+          </Button>
+        </HStack>
+      </Box>
+    </SafeAreaView>
+    
   )
 }

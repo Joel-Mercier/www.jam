@@ -24,7 +24,8 @@
       "package": "com.jmercier.www.jam",
       "permissions": [
         "android.permission.RECORD_AUDIO",
-        "android.permission.MODIFY_AUDIO_SETTINGS"
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.CAMERA"
       ]
     },
     "web": {
@@ -36,9 +37,11 @@
       "expo-router",
       "expo-secure-store",
       [
-        "expo-av",
+        "expo-camera",
         {
-          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "recordAudioAndroid": true
         }
       ]
     ],

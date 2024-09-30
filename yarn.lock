@@ -5559,10 +5559,12 @@ expo-asset@~10.0.10:
     invariant "^2.2.4"
     md5-file "^3.2.3"
 
-expo-av@~14.0.6:
-  version "14.0.7"
-  resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-14.0.7.tgz#deb967325e58b2c4d408f5d76a7ccb269442cba1"
-  integrity sha512-FvKZxyy+2/qcCmp+e1GTK3s4zH8ZO1RfjpqNxh7ARlS1oH8HPtk1AyZAMo52tHz3yQ3UIqxQ2YbI9CFb4065lA==
+expo-camera@~15.0.16:
+  version "15.0.16"
+  resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-15.0.16.tgz#149f25304ae7d76ae55653ca16f947e9f437c782"
+  integrity sha512-FLE02DMqkjwsb7IugKAqQvBe6s+TCQeb5LupO1+r//wAhBwmHncOrc6zV95ZEC2f9PTPK34nFH/s8CDGiVzIAA==
+  dependencies:
+    invariant "^2.2.4"
 
 expo-constants@~16.0.0, expo-constants@~16.0.2:
   version "16.0.2"
@@ -7762,10 +7764,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lucide-react-native@^0.394.0:
-  version "0.394.0"
-  resolved "https://registry.yarnpkg.com/lucide-react-native/-/lucide-react-native-0.394.0.tgz#58218776418cd8a3407a30cffa5549acc62c719c"
-  integrity sha512-InjIuiAZmMPSi7Movu/62o3dT07X3/xp6AzTOjYmDVRrgeZnnqttdKXEpXV1+zGlxqrz5ivC6VYWSVXHpIMmlw==
+lucide-react-native@^0.446.0:
+  version "0.446.0"
+  resolved "https://registry.yarnpkg.com/lucide-react-native/-/lucide-react-native-0.446.0.tgz#930d12f2382e1010d11c63862e3cbf9672a59d60"
+  integrity sha512-lKfbQy3374bWBy10ZsRa6UCPrldocRloOdSmf9npkY4cAOfTUfkrVp1jD+G7RyPsJzSpwshwboAqE3RaCh47Bg==
 
 make-dir@^2.0.0, make-dir@^2.1.0:
   version "2.1.0"

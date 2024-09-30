@@ -1,12 +1,11 @@
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { Stack, useNavigation } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { ArrowLeft } from 'lucide-react-native';
-import { colorScheme } from 'nativewind';
 import { TouchableOpacity } from 'react-native';
 
 
 export default function SettingsLayout() {
-  const navigation = useNavigation();
+  const router = useRouter();
   const colorScheme = useColorScheme();
   return (
     <Stack
@@ -18,8 +17,8 @@ export default function SettingsLayout() {
           elevation: 0
         },
         headerLeft: (props) => {
-          if (props.canGoBack) {
-            return <TouchableOpacity onPress={() => navigation.goBack()}><ArrowLeft color={props.tintColor} /></TouchableOpacity>
+          if (router.canGoBack()) {
+            return <TouchableOpacity onPress={() => router.back()}><ArrowLeft color={props.tintColor} /></TouchableOpacity>
           }
         },
       }}

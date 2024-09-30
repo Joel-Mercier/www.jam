@@ -1,7 +1,7 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import "@/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { Stack, useNavigation } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
@@ -29,7 +29,7 @@ const queryClient = new QueryClient()
 
 
 export default function RootLayout() {
-  const navigation = useNavigation();
+  const router = useRouter();
   useReactQueryDevTools(queryClient);
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
@@ -63,11 +63,11 @@ export default function RootLayout() {
                     contentStyle: { backgroundColor: colorScheme === 'dark' ? '#181A20' : colors.white },
                     headerTitle: '',
                     headerStyle: {
-                      backgroundColor: "transparent",
+                      borderWidth: 0,
                     },
                     headerLeft: (props) => {
-                      if (props.canGoBack) {
-                        return <TouchableOpacity onPress={() => navigation.goBack()}><ArrowLeft color={props.tintColor} /></TouchableOpacity>
+                      if (router.canGoBack()) {
+                        return <TouchableOpacity onPress={() => router.back()}><ArrowLeft color={props.tintColor} /></TouchableOpacity>
                       }
                     },
                   }}
@@ -75,9 +75,9 @@ export default function RootLayout() {
                   <Stack.Screen name="(app)" options={{ headerShown: false }} />
                   <Stack.Screen name="+not-found" />
                   <Stack.Screen name="start" options={{ headerShown: false }} />
-                  <Stack.Screen name="login" options={{ title: "Login", headerShown: true, headerTransparent: true }} />
-                  <Stack.Screen name="sign-up" options={{ title: "Sign up",headerShown: true, headerTransparent: true }} />
-                  <Stack.Screen name="lost-password" options={{ title: "Lost password", headerShown: true, headerTransparent: true }} />
+                  <Stack.Screen name="login" options={{ title: "Login", headerShown: true }} />
+                  <Stack.Screen name="sign-up" options={{ title: "Sign up",headerShown: true }} />
+                  <Stack.Screen name="lost-password" options={{ title: "Lost password", headerShown: true }} />
                 </Stack>
               </SessionProvider>
             </ThemeProvider>

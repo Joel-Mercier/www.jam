@@ -55,7 +55,7 @@ export default function HelpCenterScreen() {
             <ButtonText>General</ButtonText>
           </Button>
         </ScrollView>
-        <PagerView ref={pager} initialPage={0} onPageSelected={handlePageSelected} style={{ flex: 1 }} orientation="horizontal" scrollEnabled>
+        <PagerView ref={pager} initialPage={0} onPageSelected={handlePageSelected} style={{ flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
 
             <Accordion size="lg" variant="unfilled" type="multiple" isCollapsible={true} isDisabled={false}  className="mt-4 px-4">

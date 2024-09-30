@@ -1,13 +1,16 @@
+import { Box } from '@/components/ui/box';
+import { Heading } from '@/components/ui/heading';
+import { HStack } from '@/components/ui/hstack';
 import { useSession } from '@/contexts/auth';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { Stack, Redirect, useNavigation } from 'expo-router';
-import { ArrowLeft, X } from 'lucide-react-native';
+import { Stack, Redirect, useRouter, Link } from 'expo-router';
+import { ArrowLeft, CircleEllipsis, Pencil, Search, Send, Star, X } from 'lucide-react-native';
 import { TouchableOpacity } from 'react-native';
 
 
 export default function AppLayout() {
   const { session, isLoading } = useSession();
-  const navigation = useNavigation();
+  const router = useRouter();
   const colorScheme = useColorScheme();
 
   if (!session) {
@@ -22,39 +25,139 @@ export default function AppLayout() {
         headerTintColor: colorScheme === 'dark' ? '#FFF' : '#181A20',
         headerStyle: { backgroundColor: "transparent", borderWidth: 0, elevation: 0 },
         headerTitleAlign: "left",
+        headerTitle: props => (
+          <Box className="flex-1 justify-center items-start">
+            <Heading size="lg">{props.children}</Heading>
+          </Box>
+        ),
         headerLeft: (props) => {
-          if (props.canGoBack) {
-            return <TouchableOpacity onPress={() => navigation.goBack()}><ArrowLeft color={props.tintColor} /></TouchableOpacity>
+          if (router.canGoBack()) {
+            return <TouchableOpacity onPress={() => router.back()}><ArrowLeft color={props.tintColor} /></TouchableOpacity>
           }
         },
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="discover" options={{ title: "Discover" }} />
-      <Stack.Screen name="top-authors" options={{ title: "Top authors" }} />
-      <Stack.Screen name="top-collections" options={{ title: "Top collections" }} />
-      <Stack.Screen name="top-picks" options={{ title: "Top picks" }} />
-      <Stack.Screen name="trending-quizzes" options={{ title: "Trending quizzes" }} />
+      <Stack.Screen
+        name="discover"
+        options={{
+          title: "Discover",
+          headerRight: (props) => {
+            return <TouchableOpacity onPress={() => router.navigate('/')}><Search color={props.tintColor} /></TouchableOpacity>
+          },
+        }}
+      />
+      <Stack.Screen
+        name="top-authors"
+        options={{
+          title: "Top authors",
+          headerRight: (props) => {
+            return <TouchableOpacity onPress={() => router.navigate('/')}><Search color={props.tintColor} /></TouchableOpacity>
+          },
+        }}
+      />
+      <Stack.Screen
+        name="top-collections"
+        options={{
+          title: "Top collections",
+          headerRight: (props) => {
+            return <TouchableOpacity onPress={() => router.navigate('/')}><Search color={props.tintColor} /></TouchableOpacity>
+          },
+        }}
+      />
+      <Stack.Screen
+        name="top-picks"
+        options={{
+         title: "Top picks",
+         headerRight: (props) => {
+          return <TouchableOpacity onPress={() => router.navigate('/')}><Search color={props.tintColor} /></TouchableOpacity>
+        },
+        }}
+      />
+      <Stack.Screen
+        name="trending-quizzes"
+        options={{
+          title: "Trending quizzes",
+          headerRight: (props) => {
+            return <TouchableOpacity onPress={() => router.navigate('/')}><Search color={props.tintColor} /></TouchableOpacity>
+          },
+        }}
+      />
       <Stack.Screen name="settings" options={{ title: "Settings", headerShown: false }} />
       <Stack.Screen name="favorites" options={{ title: "Favorites" }} />
       <Stack.Screen name="followed" options={{ title: "Follows" }} />
       <Stack.Screen name="followers" options={{ title: "Followers" }} />
       <Stack.Screen name="notifications" options={{ title: "Notifications" }} />
-      <Stack.Screen name="quizzes/[id]" options={{ headerTitle: "", headerTransparent: true }} />
-      <Stack.Screen name="new-collection" options={{ headerTitle: "Create new collection", headerTransparent: true }} />
       <Stack.Screen
-        name="collections/[id]"
+        name="quizzes/[id]"
         options={{
           headerTitle: "",
-          headerTransparent: true,
           headerLeft: (props) => {
-            if (props.canGoBack) {
-              return <TouchableOpacity onPress={() => navigation.goBack()}><X color={props.tintColor} /></TouchableOpacity>
+            if (router.canGoBack()) {
+              return <TouchableOpacity onPress={() => router.back()}><X color={props.tintColor} /></TouchableOpacity>
+            }
+          },
+          headerRight: (props) => (
+            <HStack space='xl'>
+              <Link href="/" asChild>
+                <TouchableOpacity>
+                  <Pencil color={props.tintColor} />
+                </TouchableOpacity>
+              </Link>
+              <Link href="/" asChild>
+                <TouchableOpacity>
+                  <Star color={props.tintColor} />
+                </TouchableOpacity>
+              </Link>
+              <Link href="/" asChild>
+                <TouchableOpacity>
+                  <CircleEllipsis color={props.tintColor} />
+                </TouchableOpacity>
+              </Link>
+            </HStack>
+          )
+        }}
+      />
+      <Stack.Screen
+        name="new-collection"
+        options={{
+          headerTitle: "Create new collection",
+          headerLeft: (props) => {
+            if (router.canGoBack()) {
+              return <TouchableOpacity onPress={() => router.back()}><X color={props.tintColor} /></TouchableOpacity>
             }
           },
         }}
       />
-      <Stack.Screen name="users/[id]" options={{ headerTitle: "", headerTransparent: true }} />
+      <Stack.Screen
+        name="collections/[id]"
+        options={{
+          headerTitle: "Collection",
+          headerRight: (props) => {
+            return <TouchableOpacity onPress={() => router.navigate('/')}><Search color={props.tintColor} /></TouchableOpacity>
+          },
+        }}
+      />
+      <Stack.Screen
+        name="users/[id]"
+        options={{
+          headerTitle: "",
+          headerRight: (props) => (
+            <HStack space='xl'>
+              <Link href="/" asChild>
+                <TouchableOpacity>
+                  <Send color={props.tintColor} />
+                </TouchableOpacity>
+              </Link>
+              <Link href="/" asChild>
+                <TouchableOpacity>
+                  <CircleEllipsis color={props.tintColor} />
+                </TouchableOpacity>
+              </Link>
+            </HStack>
+          )
+        }}
+      />
     </Stack>
   );
 }
