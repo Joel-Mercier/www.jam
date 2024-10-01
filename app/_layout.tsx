@@ -32,7 +32,7 @@ export default function RootLayout() {
   const router = useRouter();
   useReactQueryDevTools(queryClient);
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
+  const [loaded, error] = useFonts({
     Nunito_400Regular,
     Nunito_500Medium,
     Nunito_600SemiBold,
@@ -41,10 +41,10 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if (loaded) {
+    if (loaded || error) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [loaded, error]);
 
   if (!loaded) {
     return null;
@@ -61,10 +61,9 @@ export default function RootLayout() {
                   screenOptions={{
                     headerTintColor: colorScheme === 'dark' ? '#FFF' : '#181A20',
                     contentStyle: { backgroundColor: colorScheme === 'dark' ? '#181A20' : colors.white },
+                    headerStyle: { backgroundColor: colorScheme === 'dark' ? '#181A20' : colors.white },
                     headerTitle: '',
-                    headerStyle: {
-                      borderWidth: 0,
-                    },
+                    headerShadowVisible: false,
                     headerLeft: (props) => {
                       if (router.canGoBack()) {
                         return <TouchableOpacity onPress={() => router.back()}><ArrowLeft color={props.tintColor} /></TouchableOpacity>

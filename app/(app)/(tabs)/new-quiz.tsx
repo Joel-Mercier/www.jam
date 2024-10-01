@@ -1,21 +1,41 @@
 import { Button, ButtonText } from "@/components/ui/button";
+import { FileUpload } from "@/components/ui/file-upload";
 import { FormControl, FormControlError, FormControlErrorIcon, FormControlErrorText, FormControlHelper, FormControlHelperText, FormControlLabel, FormControlLabelText } from "@/components/ui/form-control";
-import { HStack } from "@/components/ui/hstack";
 import { Input, InputField } from "@/components/ui/input";
 import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { ScrollView } from "@/components/ui/scroll-view";
 import { Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectIcon, SelectInput, SelectItem, SelectPortal, SelectTrigger } from "@/components/ui/select";
 import { VStack } from "@/components/ui/vstack";
-import { AlertCircleIcon, ChevronDownIcon, Box } from "lucide-react-native";
+import { AlertCircleIcon, ChevronDownIcon, FileText, Image } from "lucide-react-native";
+import { Box } from "@/components/ui/box";
+import { Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicator, ActionsheetDragIndicatorWrapper } from "@/components/ui/actionsheet";
+import { useState } from "react";
+import { HStack } from "@/components/ui/hstack";
+import colors from "tailwindcss/colors";
+import { Heading } from "@/components/ui/heading";
+import { Center } from "@/components/ui/center";
+import { Divider } from "@/components/ui/divider";
+import { TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 
 export default function NewQuizScreen() {
+  const router = useRouter();
+  const [showActionsheet, setShowActionsheet] = useState<boolean>(false)
+  const handleClose = () => setShowActionsheet(false)
+
+  const handleQuestionTypePress = (type: string) => {
+    setShowActionsheet(false)
+    router.navigate(`/new-question`)
+    console.log(type)
+  }
 
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <KeyboardAvoidingView>
           <VStack className="px-4 mt-8">
+            <FileUpload icon={Image} label="Add cover image" className="mb-8" />
             <FormControl
               size="lg"
               isDisabled={false}
@@ -167,30 +187,85 @@ export default function NewQuizScreen() {
           </VStack>
         </KeyboardAvoidingView>
       </ScrollView>
-      <Box className="absolute bottom-0 left-0 right-0 min-h-24 bg-red-500 justify-center border-t-2 border-background-100 px-4">
-        <HStack className="items-center justify-between">
-          <Button
-            size="xl"
-            variant="solid"
-            action="secondary"
-            isDisabled={false}
-            isFocusVisible={false}
-            className="flex-1 mr-2"
-          >
-            <ButtonText>Save</ButtonText>
-          </Button>
-          <Button
-            size="xl"
-            variant="solid"
-            action="primary"
-            isDisabled={false}
-            isFocusVisible={false}
-            className="flex-1 ml-2"
-          >
-            <ButtonText>Add question</ButtonText>
-          </Button>
-        </HStack>
+      <Box className="min-h-24 bg-white justify-between items-center flex-row border-t-2 border-background-50 px-4">
+        <Button
+          size="lg"
+          variant="solid"
+          action="secondary"
+          isDisabled={false}
+          isFocusVisible={false}
+          className="flex-1 mr-2"
+        >
+          <ButtonText>Save</ButtonText>
+        </Button>
+        <Button
+          size="lg"
+          variant="solid"
+          action="primary"
+          isDisabled={false}
+          isFocusVisible={false}
+          className="flex-1 ml-2"
+          onPress={() => setShowActionsheet(true)}
+        >
+          <ButtonText>Add question</ButtonText>
+        </Button>
       </Box>
+      <Actionsheet isOpen={showActionsheet} onClose={handleClose}>
+        <ActionsheetBackdrop />
+        <ActionsheetContent>
+          <ActionsheetDragIndicatorWrapper>
+            <ActionsheetDragIndicator />
+          </ActionsheetDragIndicatorWrapper>
+          <Center className="mt-4 mb-8">
+            <Heading size="xl">Add question</Heading>
+          </Center>
+          <Divider />
+          <VStack className="w-full gap-4 mb-8">
+            <HStack className="gap-4 w-full items-center justify-between">
+              <TouchableOpacity className="flex-1 bg-background-100 border border-background-200 rounded-xl p-4 justify-center items-center" onPress={() => handleQuestionTypePress("quiz")}>
+                <Center>
+                  <FileText color={colors.indigo[500]} size={32} />
+                  <Heading size="lg" className="mt-2">Quiz</Heading>
+                </Center>
+              </TouchableOpacity>
+              <TouchableOpacity className="flex-1 bg-background-100 border border-background-200 rounded-xl p-4 justify-center items-center" onPress={() => handleQuestionTypePress("quiz")}>
+                <Center>
+                  <FileText color={colors.indigo[500]} size={32} />
+                  <Heading size="lg" className="mt-2">Quiz</Heading>
+                </Center>
+              </TouchableOpacity>
+            </HStack>
+            <HStack className="gap-4 w-full items-center justify-between">
+              <VStack className="flex-1 bg-background-100 border border-background-200 rounded-xl p-4 justify-center items-center">
+                <Center>
+                  <FileText color={colors.indigo[500]} size={32} />
+                  <Heading size="lg" className="mt-2">Quiz</Heading>
+                </Center>
+              </VStack>
+              <VStack className="flex-1 bg-background-100 border border-background-200 rounded-xl p-4 justify-center items-center">
+                <Center>
+                  <FileText color={colors.yellow[500]} size={32} />
+                  <Heading size="lg" className="mt-2">True or false</Heading>
+                </Center>
+              </VStack>
+            </HStack>
+            <HStack className="gap-4 w-full items-center justify-between">
+              <VStack className="flex-1 bg-background-100 border border-background-200 rounded-xl p-4 justify-center items-center">
+                <Center>
+                  <FileText color={colors.indigo[500]} size={32} />
+                  <Heading size="lg" className="mt-2">Quiz</Heading>
+                </Center>
+              </VStack>
+              <VStack className="flex-1 bg-background-100 border border-background-200 rounded-xl p-4 justify-center items-center">
+                <Center>
+                  <FileText color={colors.yellow[500]} size={32} />
+                  <Heading size="lg" className="mt-2">True or false</Heading>
+                </Center>
+              </VStack>
+            </HStack>
+          </VStack>
+        </ActionsheetContent>
+      </Actionsheet>
     </SafeAreaView>
     
   )

@@ -5,14 +5,16 @@ import { Input, InputField } from "@/components/ui/input";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectIcon, SelectInput, SelectItem, SelectPortal, SelectTrigger } from "@/components/ui/select";
 import { VStack } from "@/components/ui/vstack";
-import { AlertCircleIcon, ChevronDownIcon } from "lucide-react-native";
+import { AlertCircleIcon, ChevronDownIcon, Image } from "lucide-react-native";
 import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
+import { FileUpload } from "@/components/ui/file-upload";
 
 export default function NewCollectionScreen() {
   return (
     <SafeAreaView>
       <KeyboardAvoidingView style={{ flex: 1 }}>
         <VStack className="px-4 mt-8">
+          <FileUpload icon={Image} label="Add cover image" className="mb-8" />
           <FormControl
             size="lg"
             isDisabled={false}

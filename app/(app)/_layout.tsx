@@ -23,11 +23,11 @@ export default function AppLayout() {
     <Stack
       screenOptions={{
         headerTintColor: colorScheme === 'dark' ? '#FFF' : '#181A20',
-        headerStyle: { backgroundColor: "transparent", borderWidth: 0, elevation: 0 },
+        headerShadowVisible: false,
         headerTitleAlign: "left",
         headerTitle: props => (
           <Box className="flex-1 justify-center items-start">
-            <Heading size="lg">{props.children}</Heading>
+            <Heading size="xl">{props.children}</Heading>
           </Box>
         ),
         headerLeft: (props) => {
@@ -85,8 +85,15 @@ export default function AppLayout() {
       />
       <Stack.Screen name="settings" options={{ title: "Settings", headerShown: false }} />
       <Stack.Screen name="favorites" options={{ title: "Favorites" }} />
-      <Stack.Screen name="followed" options={{ title: "Follows" }} />
-      <Stack.Screen name="followers" options={{ title: "Followers" }} />
+      <Stack.Screen
+        name="followers"
+        options={{
+          title: "Followers",
+          headerRight: (props) => {
+            return <TouchableOpacity onPress={() => router.navigate('/')}><Search color={props.tintColor} /></TouchableOpacity>
+          },
+        }}
+      />
       <Stack.Screen name="notifications" options={{ title: "Notifications" }} />
       <Stack.Screen
         name="quizzes/[id]"
@@ -121,7 +128,7 @@ export default function AppLayout() {
       <Stack.Screen
         name="new-collection"
         options={{
-          headerTitle: "Create new collection",
+          title: "Create new collection",
           headerLeft: (props) => {
             if (router.canGoBack()) {
               return <TouchableOpacity onPress={() => router.back()}><X color={props.tintColor} /></TouchableOpacity>
@@ -132,7 +139,7 @@ export default function AppLayout() {
       <Stack.Screen
         name="collections/[id]"
         options={{
-          headerTitle: "Collection",
+          title: "Collection",
           headerRight: (props) => {
             return <TouchableOpacity onPress={() => router.navigate('/')}><Search color={props.tintColor} /></TouchableOpacity>
           },
@@ -158,6 +165,8 @@ export default function AppLayout() {
           )
         }}
       />
+      <Stack.Screen name="new-question" options={{ title: "New Question" }} />
+      <Stack.Screen name="my-statistics" options={{ title: "My statistics" }} />
     </Stack>
   );
 }

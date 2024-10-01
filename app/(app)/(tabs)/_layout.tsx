@@ -25,7 +25,7 @@ export default function TabLayout() {
         },
         headerTitle: props => (
           <Box className="flex-1 justify-center items-start">
-            <Heading size="lg" style={{ color: props.tintColor}}>{props.children}</Heading>
+            <Heading size="xl" style={{ color: props.tintColor}}>{props.children}</Heading>
           </Box>
         )
       }}>
@@ -94,6 +94,7 @@ export default function TabLayout() {
         options={{
           title: "Create quiz",
           tabBarLabel: 'Create',
+          tabBarStyle: { display: 'none' },
           tabBarIcon: ({ color, focused }) => (
             <SquarePlus color={color} />
           ),
@@ -117,7 +118,6 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          headerTitle: 'Profile',
           tabBarIcon: ({ color, focused }) => (
             <User color={color} />
           ),
@@ -129,7 +129,7 @@ export default function TabLayout() {
                   <Send color={tintColor} />
                 </TouchableOpacity>
               </Link>
-              <Link href="/" asChild>
+              <Link href="/my-statistics" asChild>
                 <TouchableOpacity>
                   <ChartSpline color={tintColor} />
                 </TouchableOpacity>

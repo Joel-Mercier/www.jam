@@ -1,3 +1,5 @@
+import { Box } from '@/components/ui/box';
+import { Heading } from '@/components/ui/heading';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { Stack, useRouter } from 'expo-router';
 import { ArrowLeft } from 'lucide-react-native';
@@ -11,11 +13,17 @@ export default function SettingsLayout() {
     <Stack
       screenOptions={{
         headerTintColor: colorScheme === 'dark' ? '#FFF' : '#181A20',
+        headerShadowVisible: false,
         headerStyle: {
           backgroundColor: "#FFF",
           borderWidth: 0,
           elevation: 0
         },
+        headerTitle: props => (
+          <Box className="flex-1 justify-center items-start">
+            <Heading size="xl">{props.children}</Heading>
+          </Box>
+        ),
         headerLeft: (props) => {
           if (router.canGoBack()) {
             return <TouchableOpacity onPress={() => router.back()}><ArrowLeft color={props.tintColor} /></TouchableOpacity>

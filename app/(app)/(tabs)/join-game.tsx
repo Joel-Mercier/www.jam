@@ -9,9 +9,12 @@ import PagerView from "react-native-pager-view";
 import { useEffect, useRef, useState } from "react";
 import { Box } from "@/components/ui/box";
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
-import { CameraIcon } from "lucide-react-native";
+import { SwitchCamera } from "lucide-react-native";
+import { useNavigation } from "expo-router";
 
 export default function JoinGameScreen() {
+  const navigation = useNavigation();
+  const [scanned, setScanned] = useState<boolean>(false)
   const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
   const [page, setPage] = useState<number>(0)
@@ -21,7 +24,13 @@ export default function JoinGameScreen() {
     setPage(e.nativeEvent.position)
   }
 
+  const handleBarcodeScanned = ({ data }: any) => {
+    console.log(data);
+    setScanned(true)
+  }
+
   useEffect(() => {
+    navigation.setOptions({ headerStyle: { backgroundColor: page === 0 ? "#6949FF" : "#1F222B" } })
     pager.current?.setPage(page)
   }, [page])
 
@@ -34,7 +43,7 @@ export default function JoinGameScreen() {
             <Button size="lg" variant={page === 0 ? "solid" : "outline"} action="primary" className={`flex-1 mr-2 ${page === 0 ? "bg-white" : "border-white"}`} onPress={() => setPage(0)}>
               <ButtonText className={page === 0 ? "text-primary-500" : "text-white"}>Enter PIN</ButtonText>
             </Button>
-            <Button size="lg" variant={page === 1 ? "solid" : "outline"} action="primary" className={`flex-1 mr-2 ${page === 1 ? "bg-white" : "border-white"}`} onPress={() => setPage(1)}>
+            <Button size="lg" variant={page === 1 ? "solid" : "outline"} action="primary" className={`flex-1 mr-2 ${page === 1 ? "bg-white dark:bg-white" : "border-white dark:border-white"}`} onPress={() => setPage(1)}>
               <ButtonText className={page === 1 ? "text-primary-500" : "text-white"}>Scan QR code</ButtonText>
             </Button>
           </HStack>
@@ -55,22 +64,30 @@ export default function JoinGameScreen() {
               </Button>
             </VStack>
             <VStack className="flex-1 items-center justify-between" collapsable={false}>
-             {!permission || !permission.granted ? (
+              <Box></Box>
+              {!permission || !permission.granted ? (
                 <Button size="lg" variant="outline" action="primary" className="flex-1 ml-2 border-white" onPress={() => requestPermission()}>
                   <ButtonText className="text-white">Grant camera permission</ButtonText>
                 </Button>
               ) : (
                 <>
-                  <CameraView
-                    style={{ flex: 1 }}
-                    type={facing}
-                    onBarCodeRead={({ data }) => {
-                      console.log(data);
-                    }}
-                  />
-                  <HStack>
-                    <Button size="lg" variant="outline" action="primary" className="flex-1 mr-2 border-white" onPress={() => setFacing('back')}>
-                      <ButtonIcon as={CameraIcon} className="text-white" />
+                  <Box className="rounded-3xl overflow-hidden">
+                    <CameraView
+                      style={{ width: '100%', aspectRatio: 1 }}
+                      facing={facing}
+                      barcodeScannerSettings={{
+                        barcodeTypes: ["qr"],
+                      }}
+                      onBarcodeScanned={handleBarcodeScanned}
+                    />
+                    <Box className="absolute top-0 left-0 border-t-8 border-l-8 border-primary-500 rounded-tl-3xl w-1/5 h-1/5"></Box>
+                    <Box className="absolute top-0 right-0 border-t-8 border-r-8 border-primary-500 rounded-tr-3xl w-1/5 h-1/5"></Box>
+                    <Box className="absolute bottom-0 right-0 border-b-8 border-r-8 border-primary-500 rounded-br-3xl w-1/5 h-1/5"></Box>
+                    <Box className="absolute bottom-0 left-0 border-b-8 border-l-8 border-primary-500 rounded-bl-3xl w-1/5 h-1/5"></Box>
+                  </Box>
+                  <HStack className="mb-8">
+                    <Button size="lg" variant="solid" action="primary" className="rounded-full h-16 w-16" onPress={() => facing === 'back' ? setFacing('front') : setFacing('back')}>
+                      <ButtonIcon as={SwitchCamera} className="text-white h-8 w-8"  />
                     </Button>
                   </HStack>
                 </>

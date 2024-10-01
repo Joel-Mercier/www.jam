@@ -14,6 +14,8 @@ import QuizCard from "@/components/quizzes/QuizCard";
 import { ScrollView } from "@/components/ui/scroll-view";
 import PagerView from "react-native-pager-view";
 import { useRef, useState } from "react";
+import { Link } from "expo-router";
+import { TouchableOpacity } from "react-native";
 
 const DATA = [
   {
@@ -95,12 +97,14 @@ export default function ProfileScreen() {
                   </Heading>
                   <Text>collections</Text>
                 </VStack>
-                <VStack className="flex-1 p-2 items-center justify-center">
-                  <Heading size="md" numberOfLines={1} className="mb-0">
-                    927.3K
-                  </Heading>
-                  <Text>followers</Text>
-                </VStack>
+                <Link href={"/followers"} asChild>
+                  <TouchableOpacity className="flex-1 p-2 items-center justify-center">
+                    <Heading size="md" numberOfLines={1} className="mb-0">
+                      927.3K
+                    </Heading>
+                    <Text>followers</Text>
+                  </TouchableOpacity>
+                </Link>
                 <VStack className="flex-1 p-2 items-center justify-center border-l-2 border-background-50">
                   <Heading size="md" numberOfLines={1} className="mb-0">
                     126
