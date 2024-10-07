@@ -49,7 +49,7 @@ export default function ProfileScreen() {
               isInvalid={false}
               isReadOnly={false}
               isRequired={true}
-              className="mb-4"
+              className="mb-8"
             >
               <FormControlLabel className="mb-1">
                 <FormControlLabelText>First name</FormControlLabelText>
@@ -70,7 +70,7 @@ export default function ProfileScreen() {
               isInvalid={false}
               isReadOnly={false}
               isRequired={true}
-              className="mb-4"
+              className="mb-8"
             >
               <FormControlLabel className="mb-1">
                 <FormControlLabelText>Last name</FormControlLabelText>
@@ -91,7 +91,7 @@ export default function ProfileScreen() {
               isInvalid={false}
               isReadOnly={false}
               isRequired={true}
-              className="mb-4"
+              className="mb-8"
             >
               <FormControlLabel className="mb-1">
                 <FormControlLabelText>Email</FormControlLabelText>
@@ -112,7 +112,7 @@ export default function ProfileScreen() {
               isInvalid={false}
               isReadOnly={false}
               isRequired={true}
-              className="mb-4"
+              className="mb-8"
             >
               <FormControlLabel className="mb-1">
                 <FormControlLabelText>Password</FormControlLabelText>
@@ -144,7 +144,7 @@ export default function ProfileScreen() {
               isInvalid={false}
               isReadOnly={false}
               isRequired={true}
-              className="mb-4"
+              className="mb-8"
             >
               <FormControlLabel className="mb-1">
                 <FormControlLabelText>Phone</FormControlLabelText>

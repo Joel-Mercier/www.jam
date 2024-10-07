@@ -187,7 +187,7 @@ export default function NewQuizScreen() {
           </VStack>
         </KeyboardAvoidingView>
       </ScrollView>
-      <Box className="min-h-24 bg-white justify-between items-center flex-row border-t-2 border-background-50 px-4">
+      <Box className="min-h-24 bg-background justify-between items-center flex-row border-t-2 border-background-50 px-4">
         <Button
           size="lg"
           variant="solid"

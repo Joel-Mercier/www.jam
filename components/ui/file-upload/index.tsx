@@ -10,15 +10,16 @@ type FileUploadProps = {
   icon: any;
   label: string;
   className?: string;
+  onPress: () => void;
 };
 
 const fileUploadStyle = tva({
   base: "rounded-3xl overflow-hidden border-2 border-primary-500 bg-background-50 py-8",
 })
 
-function FileUpload({ icon, label, className }: FileUploadProps) {
+function FileUpload({ icon, label, className, onPress }: FileUploadProps) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <Box className={fileUploadStyle({ class: className})}>
         <VStack>
           <Center>

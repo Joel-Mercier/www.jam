@@ -1,8 +1,6 @@
 import { VStack } from "@/components/ui/vstack";
-import { LinkText } from "@/components/ui/link";
 import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
 import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
-
 import {
   FormControl,
   FormControlError,
@@ -25,7 +23,6 @@ import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react-native";
 import { useHeaderHeight } from '@react-navigation/elements';
 import { Center } from "@/components/ui/center";
-import { Divider } from "@/components/ui/divider";
 
 type LoginInputs = {
   email: string;
@@ -58,11 +55,11 @@ export default function LoginScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1}}>
+    <SafeAreaView>
       <KeyboardAvoidingView style={{ flex: 1 }}>
         <Box className="px-4" style={{ paddingTop: headerHeight }}>
           <VStack>
-            <Heading size="2xl" className="mb-4">Hello there</Heading>
+            <Heading size="3xl" className="mb-4">Hello there !</Heading>
             <Controller
               control={control}
               rules={{
@@ -76,7 +73,7 @@ export default function LoginScreen() {
                   isInvalid={!!errors.email}
                   isReadOnly={false}
                   isRequired={true}
-                  className="mb-4"
+                  className="mb-8"
                 >
                   <FormControlLabel className="mb-1">
                     <FormControlLabelText>Email</FormControlLabelText>
@@ -128,7 +125,6 @@ export default function LoginScreen() {
                     </FormControlHelperText>
                   </FormControlHelper>
                   {errors.password &&
-
                     <FormControlError>
                       <FormControlErrorIcon as={AlertCircleIcon} />
                       <FormControlErrorText>
@@ -139,7 +135,6 @@ export default function LoginScreen() {
                 </FormControl>
               )}
             />
-            <Divider />
             <Center className="mt-8">
               <Link href="/lost-password" asChild>
                 <Button size="lg" action="primary" variant="link">
@@ -149,7 +144,7 @@ export default function LoginScreen() {
             </Center>
           </VStack>
         </Box>
-        <Box className="absolute bottom-0 left-0 right-0 min-h-24 bg-white justify-center border-t-2 border-background-100 px-4">
+        <Box className="absolute bottom-0 left-0 right-0 min-h-24 bg-background justify-center border-t-2 border-background-50 px-4">
           <Button
             size="xl"
             variant="solid"
@@ -158,7 +153,7 @@ export default function LoginScreen() {
             isFocusVisible={false}
             onPress={handleSubmit(onSubmit)}
           >
-            <ButtonText className="uppercase">Sign in</ButtonText>
+            <ButtonText>Sign in</ButtonText>
           </Button>
         </Box>
       </KeyboardAvoidingView>

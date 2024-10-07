@@ -1,30 +1,35 @@
 import { Box } from '@/components/ui/box';
 import { Heading } from '@/components/ui/heading';
 import { HStack } from '@/components/ui/hstack';
+import useApp from '@/contexts/app';
 import { useSession } from '@/contexts/auth';
-import { useColorScheme } from '@/hooks/useColorScheme';
 import { Stack, Redirect, useRouter, Link } from 'expo-router';
 import { ArrowLeft, CircleEllipsis, Pencil, Search, Send, Star, X } from 'lucide-react-native';
 import { TouchableOpacity } from 'react-native';
+import colors from 'tailwindcss/colors';
 
 
 export default function AppLayout() {
-  const { session, isLoading } = useSession();
+  const { session } = useSession();
   const router = useRouter();
-  const colorScheme = useColorScheme();
+  const theme = useApp.use.theme()
 
   if (!session) {
     // On web, static rendering will stop here as the user is not authenticated
     // in the headless Node process that the pages are rendered in.
-    return <Redirect href="/start" />;
+    return <Redirect href="/(auth)/start" />;
   }
 
   return (
     <Stack
       screenOptions={{
-        headerTintColor: colorScheme === 'dark' ? '#FFF' : '#181A20',
+        headerTintColor: theme === 'dark' ? colors.white : '#181A20',
+        headerStyle: {
+          backgroundColor: theme === 'dark' ? "#191A1F" : colors.white,
+        },
         headerShadowVisible: false,
         headerTitleAlign: "left",
+        headerBackVisible: false,
         headerTitle: props => (
           <Box className="flex-1 justify-center items-start">
             <Heading size="xl">{props.children}</Heading>
@@ -166,7 +171,21 @@ export default function AppLayout() {
         }}
       />
       <Stack.Screen name="new-question" options={{ title: "New Question" }} />
-      <Stack.Screen name="my-statistics" options={{ title: "My statistics" }} />
+      <Stack.Screen
+        name="my-statistics"
+        options={{
+          title: "My statistics",
+          headerRight: ({ tintColor }) => (
+            <HStack space='xl' className="mr-4">
+              <Link href="/" asChild>
+                <TouchableOpacity>
+                  <CircleEllipsis color={tintColor} />
+                </TouchableOpacity>
+              </Link>
+            </HStack>
+          )
+        }}
+      />
     </Stack>
   );
 }

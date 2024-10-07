@@ -28,7 +28,7 @@ cssInterop(UIAvatar.Image, { className: 'style' });
 cssInterop(UIAvatar.FallbackText, { className: 'style' });
 
 const avatarStyle = tva({
-  base: 'rounded-full justify-center items-center relative bg-primary-600 group-[.avatar-group]/avatar-group:-ml-2.5',
+  base: 'rounded-full justify-center items-center relative bg-primary-500 group-[.avatar-group]/avatar-group:-ml-2.5',
   variants: {
     size: {
       'xs': 'w-6 h-6',

@@ -242,7 +242,7 @@ const actionsheetSectionHeaderTextStyle = tva({
       true: 'italic',
     },
     highlight: {
-      true: 'bg-yellow500',
+      true: 'bg-yellow-500',
     },
   },
   defaultVariants: {

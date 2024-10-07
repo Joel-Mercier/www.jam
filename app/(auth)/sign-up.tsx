@@ -18,10 +18,11 @@ import { AlertCircleIcon } from "@/components/ui/icon";
 import { CheckIcon, EyeIcon, EyeOffIcon } from "lucide-react-native";
 import { useState } from "react";
 import { useHeaderHeight } from '@react-navigation/elements';
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
 import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
+import colors from "tailwindcss/colors";
 
 export default function SignupScreen() {
   const [showPassword, setShowPassword] = useState(false)
@@ -41,20 +42,20 @@ export default function SignupScreen() {
   }
 
   return (
-      <SafeAreaView style={{ flex: 1}}>
-        <ScrollView style={{ paddingTop: headerHeight }}>
+      <SafeAreaView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <KeyboardAvoidingView>
-            <Box className="px-4">
+            <Box className="px-4 mt-8">
               <VStack>
-                <Heading size="2xl" className="text-center mb-4">Create an account</Heading>
-                <Text className="text-center mb-4">Please enter your informations to create your account.</Text>
+                <Heading size="3xl" className="text-center mb-4">Create an account</Heading>
+                <Text className="text-center mb-4">Please fill in the fields below to create your account.</Text>
                 <FormControl
                   size="lg"
                   isDisabled={false}
                   isInvalid={false}
                   isReadOnly={false}
                   isRequired={true}
-                  className="mb-4"
+                  className="mb-8"
                 >
                   <FormControlLabel className="mb-1">
                     <FormControlLabelText>First name</FormControlLabelText>
@@ -75,7 +76,7 @@ export default function SignupScreen() {
                   isInvalid={false}
                   isReadOnly={false}
                   isRequired={true}
-                  className="mb-4"
+                  className="mb-8"
                 >
                   <FormControlLabel className="mb-1">
                     <FormControlLabelText>Last name</FormControlLabelText>
@@ -96,7 +97,7 @@ export default function SignupScreen() {
                   isInvalid={false}
                   isReadOnly={false}
                   isRequired={true}
-                  className="mb-4"
+                  className="mb-8"
                 >
                   <FormControlLabel className="mb-1">
                     <FormControlLabelText>Email</FormControlLabelText>
@@ -117,7 +118,7 @@ export default function SignupScreen() {
                   isInvalid={false}
                   isReadOnly={false}
                   isRequired={true}
-                  className="mb-4"
+                  className="mb-8"
                 >
                   <FormControlLabel className="mb-1">
                     <FormControlLabelText>Password</FormControlLabelText>
@@ -149,7 +150,7 @@ export default function SignupScreen() {
                   isInvalid={false}
                   isReadOnly={false}
                   isRequired={true}
-                  className="mb-4"
+                  className="mb-8"
                 >
                   <FormControlLabel className="mb-1">
                     <FormControlLabelText>Password confirmation</FormControlLabelText>
@@ -187,7 +188,7 @@ export default function SignupScreen() {
             </Box >
           </KeyboardAvoidingView>
         </ScrollView>
-        <Box className="min-h-24 bg-white justify-center border-t-2 border-background-100 px-4">
+        <Box className="min-h-24 bg-background justify-center border-t-2 border-background-50 px-4">
           <Button
             size="xl"
             variant="solid"

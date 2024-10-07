@@ -1,4 +1,4 @@
-import { wwwJamApiInstance } from "./";
+import { wwwJamApiInstance } from ".";
 
 export const postLogin = async (params) => {
   const rsp = await wwwJamApiInstance.post("/api/v1/auth/login", {
@@ -8,6 +8,7 @@ export const postLogin = async (params) => {
 };
 
 export const postLogout = async (params) => {
+  console.log(wwwJamApiInstance.defaults.headers.common);
   const rsp = await wwwJamApiInstance.post("/api/v1/auth/logout", {
     ...params,
   });

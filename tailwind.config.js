@@ -1,3 +1,5 @@
+import { platformSelect } from "nativewind/theme";
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "media",
@@ -171,8 +173,8 @@ module.exports = {
           muted: 'rgb(var(--color-background-muted)/<alpha-value>)',
           success: 'rgb(var(--color-background-success)/<alpha-value>)',
           info: 'rgb(var(--color-background-info)/<alpha-value>)',
-          light: '#FFFFFF',
-          dark: '#181719',
+          light: 'rgb(var(--color-background-light)/<alpha-value>)',
+          background: 'rgb(var(--color-background)/<alpha-value>)',
         },
 
         indicator: {
@@ -585,8 +587,13 @@ module.exports = {
       },
 
       fontFamily: {
+        body: platformSelect({
+          android: ['Nunito_400Regular', 'sans-serif'],
+          ios: ['Nunito', 'sans-serif'], 
+          default: ['Nunito', 'sans-serif']
+        }),
         heading: ['Nunito', 'sans-serif'],
-        body: ['Nunito', 'sans-serif'],
+        // body: ['Nunito', 'sans-serif'],
         mono: undefined,
         nunito: ['Nunito', 'sans-serif'],
       },

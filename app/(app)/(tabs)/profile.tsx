@@ -13,7 +13,7 @@ import { ArrowUpDown } from "lucide-react-native";
 import QuizCard from "@/components/quizzes/QuizCard";
 import { ScrollView } from "@/components/ui/scroll-view";
 import PagerView from "react-native-pager-view";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "expo-router";
 import { TouchableOpacity } from "react-native";
 
@@ -43,10 +43,14 @@ export default function ProfileScreen() {
     setPage(e.nativeEvent.position)
   }
 
+  useEffect(() => {
+    pager.current?.setPage(page)
+  }, [page])
+
   return (
     <SafeAreaView>
-      <ScrollView>
-        <Box className="px-4 flex-1">
+      {/* <ScrollView className="bg-blue-100"> */}
+        <Box className="px-4">
           <VStack className="mt-8">
             <Image source={{ uri: "https://picsum.photos/300/150" }} className="w-full h-[150px] rounded-xl" alt="collection" />
             <HStack className="items-center justify-between mt-8 mb-4">
@@ -62,9 +66,11 @@ export default function ProfileScreen() {
                 </VStack>
               </HStack>
               <HStack>
-                <Button size="sm" variant="solid" action="primary" className="mr-1">
-                  <ButtonText>Edit profile</ButtonText>
-                </Button>
+                <Link href='/settings/profile' asChild>
+                  <Button size="sm" variant="solid" action="primary" className="mr-1">
+                    <ButtonText>Edit profile</ButtonText>
+                  </Button>
+                </Link>
               </HStack>
             </HStack>
             <Divider />
@@ -149,65 +155,60 @@ export default function ProfileScreen() {
                 <ButtonText>About</ButtonText>
               </Button>
             </HStack>
-            <Box className="flex-1">
-            <PagerView style={{ flex: 1, height: '100%', padding: 16, backgroundColor: 'red' }} initialPage={0} ref={pager} onPageSelected={handlePageSelected}>
-              <Box className="flex-1">
-                <FlashList
-                  nestedScrollEnabled
-                  data={DATA}
-                  renderItem={({ item }) => <QuizCard quiz={item} />}
-                  ListHeaderComponent={(
-                    <HStack className="my-8 items-center justify-between">
-                      <Heading size="xl">245 quizzes</Heading>
-                      <Button size="lg" variant="link" action="primary" className="ml-2">
-                        <ButtonText>Default</ButtonText>
-                        <ButtonIcon as={ArrowUpDown} className="h-6 w-6 text-primary-500 ml-1" />
-                      </Button>
-                    </HStack>
-                  )}
-                  contentContainerStyle={{ padding: 16 }}
-                  showsVerticalScrollIndicator={false}
-                  estimatedItemSize={125}
-                />
-              </Box>
-              <FlashList
-                data={DATA}
-                renderItem={({ item }) => <QuizCard quiz={item} />}
-                ListHeaderComponent={(
-                  <HStack className="my-8 items-center justify-between">
-                    <Heading size="xl">245 quizzes</Heading>
-                    <Button size="lg" variant="link" action="primary" className="ml-2">
-                      <ButtonText>Default</ButtonText>
-                      <ButtonIcon as={ArrowUpDown} className="h-6 w-6 text-primary-500 ml-1" />
-                    </Button>
-                  </HStack>
-                )}
-                contentContainerStyle={{ padding: 16 }}
-                showsVerticalScrollIndicator={false}
-                estimatedItemSize={125}
-              />
-              <FlashList
-                data={DATA}
-                renderItem={({ item }) => <QuizCard quiz={item} />}
-                ListHeaderComponent={(
-                  <HStack className="my-8 items-center justify-between">
-                    <Heading size="xl">245 quizzes</Heading>
-                    <Button size="lg" variant="link" action="primary" className="ml-2">
-                      <ButtonText>Default</ButtonText>
-                      <ButtonIcon as={ArrowUpDown} className="h-6 w-6 text-primary-500 ml-1" />
-                    </Button>
-                  </HStack>
-                )}
-                contentContainerStyle={{ padding: 16 }}
-                showsVerticalScrollIndicator={false}
-                estimatedItemSize={125}
-              />
-            </PagerView>
-            </Box>
           </VStack>
-          
         </Box>
-      </ScrollView>
+      <PagerView ref={pager} initialPage={0} onPageSelected={handlePageSelected} style={{ flex: 1 }}>
+        <FlashList
+            data={DATA}
+            renderItem={({ item }) => <QuizCard quiz={item} />}
+            ListHeaderComponent={(
+              <HStack className="mb-8 items-center justify-between">
+                <Heading size="xl">245 quizzes</Heading>
+                <Button size="lg" variant="link" action="primary" className="ml-2">
+                  <ButtonText>Default</ButtonText>
+                  <ButtonIcon as={ArrowUpDown} className="h-6 w-6 text-primary-500 ml-1" />
+                </Button>
+              </HStack>
+            )}
+            contentContainerStyle={{ paddingHorizontal: 16}}
+            showsVerticalScrollIndicator={false}
+            estimatedItemSize={125}
+          />
+          <FlashList
+            data={DATA}
+            renderItem={({ item }) => <QuizCard quiz={item} />}
+            ListHeaderComponent={(
+              <HStack className="mb-8 items-center justify-between">
+                <Heading size="xl">245 quizzes</Heading>
+                <Button size="lg" variant="link" action="primary" className="ml-2">
+                  <ButtonText>Default</ButtonText>
+                  <ButtonIcon as={ArrowUpDown} className="h-6 w-6 text-primary-500 ml-1" />
+                </Button>
+              </HStack>
+            )}
+            showsVerticalScrollIndicator={false}
+            estimatedItemSize={125}
+            contentContainerStyle={{ paddingHorizontal: 16}}
+          />
+          <FlashList
+            data={DATA}
+            renderItem={({ item }) => <QuizCard quiz={item} />}
+            ListHeaderComponent={(
+              <HStack className="mb-8 items-center justify-between">
+                <Heading size="xl">245 quizzes</Heading>
+                <Button size="lg" variant="link" action="primary" className="ml-2">
+                  <ButtonText>Default</ButtonText>
+                  <ButtonIcon as={ArrowUpDown} className="h-6 w-6 text-primary-500 ml-1" />
+                </Button>
+              </HStack>
+            )}
+            showsVerticalScrollIndicator={false}
+            estimatedItemSize={125}
+            contentContainerStyle={{ paddingHorizontal: 16}}
+          />
+        </PagerView>
+      {/* </ScrollView> */}
+      
     </SafeAreaView>
   );
 }

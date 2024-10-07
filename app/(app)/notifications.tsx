@@ -1,10 +1,37 @@
+import Notification from "@/components/notifications/Notification";
 import { Box } from "@/components/ui/box";
-import NotificationList from "@/components/notifications/NotificationList";
+import { SafeAreaView } from "@/components/ui/safe-area-view";
+import { FlashList } from "@shopify/flash-list";
+
+const DATA = [
+  {
+    title: "First Item",
+  },
+  {
+    title: "Second Item",
+  },
+  {
+    title: "Third Item",
+  },
+  {
+    title: "Fourth Item",
+  },
+  {
+    title: "Fifth Item",
+  },
+];
 
 export default function NotificationsScreen() {
   return (
-    <Box className="px-4 mt-8">
-      <NotificationList notifications={[]} />
-    </Box>
+    <SafeAreaView>
+      <Box className="flex-1 px-4">
+        <FlashList
+          data={DATA}
+          renderItem={({ item }) => <Notification notification={item} />}
+          estimatedItemSize={100}
+          showsVerticalScrollIndicator={false}
+        />
+      </Box>
+    </SafeAreaView>
   );
 }

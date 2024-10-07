@@ -1,24 +1,26 @@
 import { Box } from '@/components/ui/box';
 import { Heading } from '@/components/ui/heading';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import useApp from '@/contexts/app';
 import { Stack, useRouter } from 'expo-router';
 import { ArrowLeft } from 'lucide-react-native';
 import { TouchableOpacity } from 'react-native';
+import colors from 'tailwindcss/colors';
 
 
 export default function SettingsLayout() {
   const router = useRouter();
-  const colorScheme = useColorScheme();
+  const theme = useApp.use.theme()
   return (
     <Stack
       screenOptions={{
-        headerTintColor: colorScheme === 'dark' ? '#FFF' : '#181A20',
+        headerTintColor: theme === 'dark' ? colors.white : '#181A20',
         headerShadowVisible: false,
         headerStyle: {
-          backgroundColor: "#FFF",
+          backgroundColor: theme === 'dark' ? "#191A1F" : colors.white,
           borderWidth: 0,
           elevation: 0
         },
+        headerBackVisible: false,
         headerTitle: props => (
           <Box className="flex-1 justify-center items-start">
             <Heading size="xl">{props.children}</Heading>

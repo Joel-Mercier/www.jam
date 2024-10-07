@@ -40,10 +40,10 @@ export default function JoinGameScreen() {
         <StatusBar barStyle="light-content" />
         <VStack className="flex-1 px-4 mt-8 items-center justify-between">
           <HStack className="items-center justify-between">
-            <Button size="lg" variant={page === 0 ? "solid" : "outline"} action="primary" className={`flex-1 mr-2 ${page === 0 ? "bg-white" : "border-white"}`} onPress={() => setPage(0)}>
+            <Button size="lg" variant={page === 0 ? "solid" : "outline"} action="primary" className={`flex-1 mr-2 ${page === 0 ? "border-b-0 bg-white" : "border-white"}`} onPress={() => setPage(0)}>
               <ButtonText className={page === 0 ? "text-primary-500" : "text-white"}>Enter PIN</ButtonText>
             </Button>
-            <Button size="lg" variant={page === 1 ? "solid" : "outline"} action="primary" className={`flex-1 mr-2 ${page === 1 ? "bg-white dark:bg-white" : "border-white dark:border-white"}`} onPress={() => setPage(1)}>
+            <Button size="lg" variant={page === 1 ? "solid" : "outline"} action="primary" className={`flex-1 mr-2 ${page === 1 ? "border-b-0 bg-white dark:bg-white" : "border-white dark:border-white"}`} onPress={() => setPage(1)}>
               <ButtonText className={page === 1 ? "text-primary-500" : "text-white"}>Scan QR code</ButtonText>
             </Button>
           </HStack>
@@ -59,7 +59,7 @@ export default function JoinGameScreen() {
               >
                 <InputField placeholder={"Enter pin".toUpperCase()} className="text-4xl uppercase text-center color-white font-extrabold placeholder:text-white/50" size="2xl" autoCapitalize="characters" keyboardType="number-pad" />
               </Input>
-              <Button size="xl" variant="solid" action="primary" className="mb-8 w-full bg-white" onPress={() => console.log("Pressed")}>
+              <Button size="xl" variant="solid" action="primary" className="mb-8 w-full bg-white border-b-background-300" onPress={() => console.log("Pressed")}>
                 <ButtonText className="text-primary-500 uppercase">Join now</ButtonText>
               </Button>
             </VStack>
@@ -86,7 +86,7 @@ export default function JoinGameScreen() {
                     <Box className="absolute bottom-0 left-0 border-b-8 border-l-8 border-primary-500 rounded-bl-3xl w-1/5 h-1/5"></Box>
                   </Box>
                   <HStack className="mb-8">
-                    <Button size="lg" variant="solid" action="primary" className="rounded-full h-16 w-16" onPress={() => facing === 'back' ? setFacing('front') : setFacing('back')}>
+                    <Button size="lg" variant="solid" action="primary" className="border-b-0 rounded-full h-16 w-16" onPress={() => facing === 'back' ? setFacing('front') : setFacing('back')}>
                       <ButtonIcon as={SwitchCamera} className="text-white h-8 w-8"  />
                     </Button>
                   </HStack>

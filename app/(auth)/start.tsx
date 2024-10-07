@@ -7,7 +7,7 @@ import SlideThree from "@/assets/images/undraw_people_re_8spw.svg"
 import SlideTwo from "@/assets/images/undraw_outer_space_re_u9vd.svg"
 import SlideOne from "@/assets/images/undraw_completed_tasks_vs6q.svg"
 import PagerView from "react-native-pager-view";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { HStack } from "@/components/ui/hstack";
 import { Box } from "@/components/ui/box";
 import { useState } from "react";
@@ -16,7 +16,7 @@ export default function StartScreen() {
   const [index, setIndex] = useState<number>(0);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView>
       <VStack className="flex-1" space="xl">
         <PagerView
           style={{ flex: 1}}

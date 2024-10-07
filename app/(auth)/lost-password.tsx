@@ -23,11 +23,11 @@ import { KeyboardAvoidingView } from "@/components/ui/keyboard-avoiding-view";
 export default function LostPasswordScreen() {
   const headerHeight = useHeaderHeight();
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView>
       <KeyboardAvoidingView style={{ flex: 1 }}>
         <Box className="px-4" style={{ paddingTop: headerHeight}}>
           <VStack>
-            <Heading size="2xl" className="mb-4">
+            <Heading size="3xl" className="mb-4">
               Forgot your password?
             </Heading>
             <Text className="mb-4">Enter your email address and we will send you a link to reset your password.</Text>
@@ -55,7 +55,7 @@ export default function LostPasswordScreen() {
             
           </VStack>
         </Box>
-        <Box className="absolute bottom-0 left-0 right-0 min-h-24 bg-white justify-center border-t-2 border-background-100 px-4">
+        <Box className="absolute bottom-0 left-0 right-0 min-h-24 bg-background justify-center border-t-2 border-background-50 px-4">
           <Button
             size="xl"
             variant="solid"

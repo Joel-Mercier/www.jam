@@ -12,21 +12,18 @@ export default function Notification({ notification }) {
   return (
     <Link href={"/users/1"} asChild>
       <TouchableOpacity>
-        <Card size="sm" variant="ghost">
-          <HStack>
-            <Avatar>
-              <AvatarFallbackText>Joel Mercier</AvatarFallbackText>
-            </Avatar>
-            <VStack className="ml-4">
-              <Heading size="md" numberOfLines={1}>
-                Joel Mercier
-              </Heading>
-              <Text numberOfLines={1} className="mb-0">has contributed to your sound</Text>
-            </VStack>
+        <HStack className="py-4">
+          <Avatar>
+            <AvatarFallbackText>Joel Mercier</AvatarFallbackText>
+          </Avatar>
+          <VStack className="ml-4">
+            <Heading size="md" numberOfLines={1}>
+              Joel Mercier
+            </Heading>
+            <Text numberOfLines={1} className="mb-0">has contributed to your sound</Text>
+          </VStack>
 
-          </HStack>
-        </Card>
-        <Divider />
+        </HStack>
       </TouchableOpacity>
     </Link>
   );
