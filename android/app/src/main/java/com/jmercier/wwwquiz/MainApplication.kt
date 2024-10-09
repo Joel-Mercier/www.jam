@@ -1,4 +1,4 @@
-package com.jmercier.www.jam
+package com.jmercier.wwwquiz
 
 import android.app.Application
 import android.content.res.Configuration

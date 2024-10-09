@@ -109,9 +109,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.jmercier.www.jam'
+    namespace 'com.jmercier.wwwquiz'
     defaultConfig {
-        applicationId 'com.jmercier.www.jam'
+        applicationId 'com.jmercier.wwwquiz'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -4,16 +4,27 @@ import { useRouter } from 'expo-router';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { wwwJamApiInstance } from "@/services/api/www.quiz";
 
+export interface Session {
+  abilities?: string[],
+  expiresAt?: string,
+  lastUsedAt?: string,
+  name?: string,
+  token?: string,
+  type?: string
+}
+
 const AuthContext = createContext<{
   onRegister: (params: any) => void;
   signIn: (params: {email: string, password: string}) => void;
-  signOut: (params: { id: string }) => void;
-  session?: {abilities?: string[], expiresAt?: string, lastUsedAt?: string, name?: string, token?: string, type: string} | null;
+  signOut: () => void;
+  session?: Session | null;
+  setSession: (session: Session) => void;
 }>({
   onRegister: () => null,
   signIn: () => null,
   signOut: () => null,
   session: null,
+  setSession: () => null,
 });
 
 // This hook can be used to access the user info.
@@ -29,7 +40,7 @@ export function useSession() {
 }
 
 export function SessionProvider(props: React.PropsWithChildren) {
-  const [session, setSession] = useState(null)
+  const [session, setSession] = useState<Session | null>(null);
   const doLogin = useLogin()
   const doLogout = useLogout()
   const router = useRouter()
@@ -46,6 +57,8 @@ export function SessionProvider(props: React.PropsWithChildren) {
     }
     loadToken();
   }, [])
+
+  console.log('SESSION',session)
 
   return (
     <AuthContext.Provider
@@ -70,8 +83,8 @@ export function SessionProvider(props: React.PropsWithChildren) {
             }
           })
         },
-        signOut: async (params) => {
-          doLogout.mutate(params, {
+        signOut: async () => {
+          doLogout.mutate(undefined,{
             onSuccess: (data) => {
               async function logout() {
                 console.log('success', data)
@@ -91,6 +104,7 @@ export function SessionProvider(props: React.PropsWithChildren) {
           })
         },
         session,
+        setSession
       }}>
       {props.children}
     </AuthContext.Provider>

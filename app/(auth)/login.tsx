@@ -16,23 +16,30 @@ import { Button, ButtonText } from "@/components/ui/button";
 import { Box } from "@/components/ui/box";
 import { AlertCircleIcon } from "@/components/ui/icon";
 import { useSession } from "@/contexts/auth";
-import { Link, router } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { Heading } from "@/components/ui/heading";
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react-native";
 import { useHeaderHeight } from '@react-navigation/elements';
 import { Center } from "@/components/ui/center";
+import * as WebBrowser from 'expo-web-browser';
+import { Text } from "@/components/ui/text";
+import { wwwJamApiInstance } from "@/services/api/www.quiz";
+import * as SecureStore from "expo-secure-store";
 
 type LoginInputs = {
   email: string;
   password: string;
 }
 
+WebBrowser.maybeCompleteAuthSession();
+
 export default function LoginScreen() {
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const headerHeight = useHeaderHeight();
-  const { signIn } = useSession();
+  const { signIn, setSession } = useSession();
   const {
     control,
     handleSubmit,
@@ -52,6 +59,24 @@ export default function LoginScreen() {
 
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
     signIn(data);
+  }
+
+  const handleProviderSignIn = async (provider: string) => {
+    const result = await WebBrowser.openAuthSessionAsync(`http://localhost:3333/api/v1/auth/${provider}/redirect`, 'wwwquiz://(app)/(tabs)/');
+    if (result.type === 'success') {
+      console.log(result)
+      const url = new URL(result.url);
+      console.log(url)
+      const token = url.searchParams.get('token') || undefined;
+      console.log(token)
+      wwwJamApiInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      setSession({
+        token: token,
+      });
+      await SecureStore.setItemAsync('session', token);
+      WebBrowser.dismissAuthSession();
+      router.replace('/(app)/(tabs)/')
+    }
   }
 
   return (
@@ -135,6 +160,51 @@ export default function LoginScreen() {
                 </FormControl>
               )}
             />
+            <Center>
+              <Button
+                size="lg"
+                variant="outline"
+                action="primary"
+                isDisabled={false}
+                isFocusVisible={false}
+                onPress={() => handleProviderSignIn('google')}
+              >
+                
+                <ButtonText>Sign in with Google</ButtonText>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                action="primary"
+                isDisabled={false}
+                isFocusVisible={false}
+                onPress={() => handleProviderSignIn('facebook')}
+              >
+                
+                <ButtonText>Sign in with Facebook</ButtonText>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                action="primary"
+                isDisabled={false}
+                isFocusVisible={false}
+                onPress={() => handleProviderSignIn('discord')}
+              >
+                
+                <ButtonText>Sign in with Discord</ButtonText>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                action="primary"
+                isDisabled={false}
+                isFocusVisible={false}
+                onPress={() => handleProviderSignIn('github')}
+              >
+                <ButtonText>Sign in with Github</ButtonText>
+              </Button>
+            </Center>
             <Center className="mt-8">
               <Link href="/lost-password" asChild>
                 <Button size="lg" action="primary" variant="link">

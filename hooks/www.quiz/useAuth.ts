@@ -11,8 +11,8 @@ export const useLogin = () => {
 
 export const useLogout = () => {
   return useMutation({
-    mutationFn: (params) => {
-      return postLogout(params)
+    mutationFn: () => {
+      return postLogout()
     }
   })
 }

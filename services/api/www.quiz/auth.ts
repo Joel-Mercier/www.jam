@@ -7,10 +7,8 @@ export const postLogin = async (params) => {
   return rsp.data;
 };
 
-export const postLogout = async (params) => {
+export const postLogout = async () => {
   console.log(wwwJamApiInstance.defaults.headers.common);
-  const rsp = await wwwJamApiInstance.post("/api/v1/auth/logout", {
-    ...params,
-  });
+  const rsp = await wwwJamApiInstance.post("/api/v1/auth/logout");
   return rsp.data;
 };

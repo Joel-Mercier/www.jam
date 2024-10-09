@@ -78,7 +78,7 @@ export default function HomeScreen() {
             <ActivityIndicator size="large" color="#009688" />
           ) : (
             <FlashList
-              data={topAuthors.data}
+              data={topAuthors?.data || []}
               renderItem={({ item }) => <UserCard user={item} horizontal />}
               horizontal={topAuthors.data.length > 0}
               estimatedItemSize={100}
@@ -100,9 +100,9 @@ export default function HomeScreen() {
             <ActivityIndicator size="large" color="#009688" />
           ) : (
             <FlashList
-              data={collections.data}
+              data={collections?.data || []}
               renderItem={({ item }) => <CollectionCard collection={item} horizontal />}
-              horizontal={collections.data.length > 0}
+              horizontal={collections?.data?.length > 0 || false}
               estimatedItemSize={100}
               contentContainerStyle={{ padding: 16 }}
               showsHorizontalScrollIndicator={false}
@@ -122,7 +122,7 @@ export default function HomeScreen() {
             <ActivityIndicator size="large" color="#009688" />
           ) : (
             <FlashList
-              data={trendingQuizzes.data}
+              data={trendingQuizzes?.data || []}
               renderItem={({ item }) => <QuizCard quiz={item} horizontal />}
               horizontal={trendingQuizzes.data.length > 0}
               estimatedItemSize={100}

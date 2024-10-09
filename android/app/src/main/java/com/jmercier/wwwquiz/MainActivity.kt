@@ -1,4 +1,4 @@
-package com.jmercier.www.jam
+package com.jmercier.wwwquiz
 
 import android.os.Build
 import android.os.Bundle
