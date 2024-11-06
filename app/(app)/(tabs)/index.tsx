@@ -16,30 +16,12 @@ import { useCollections } from "@/hooks/www.quiz/useCollections";
 import EmptyList from "@/components/ui/empty-list";
 import { useUsers } from "@/hooks/www.quiz/useUsers";
 
-const DATA = [
-  {
-    title: "First Item",
-  },
-  {
-    title: "Second Item",
-  },
-  {
-    title: "Third Item",
-  },
-  {
-    title: "Fourth Item",
-  },
-  {
-    title: "Fifth Item",
-  },
-];
-
 export default function HomeScreen() {
   const { data: quizzes, isLoading: isQuizzesLoading } = useQuizzes({limit: 12, isPublic: true, sort: "created_at_desc", relations: ['user']})
+  const { data: topAuthors, isLoading: isTopAuthorsLoading } = useUsers({limit: 12, sort: "created_at_desc"})
   const { data: collections, isLoading: isCollectionsLoading } = useCollections({limit: 12, isPublic: true, sort: "created_at_desc"})
   const { data: trendingQuizzes, isLoading: isTrendingQuizzesLoading } = useQuizzes({limit: 12, isPublic: true, sort: "created_at_desc", relations: ['user']})
   const { data: topPicks, isLoading: isTopPicksLoading } = useQuizzes({limit: 12, isPublic: true, sort: "created_at_desc", relations: ['user']})
-  const { data: topAuthors, isLoading: isTopAuthorsLoading } = useUsers({limit: 12, sort: "created_at_desc"})
   return (
     <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -57,12 +39,13 @@ export default function HomeScreen() {
             <ActivityIndicator size="large" color="#009688" />
           ) : (
             <FlashList
-              data={quizzes.data}
+              data={quizzes?.data || []}
               renderItem={({ item }) => <QuizCard quiz={item} horizontal />}
-              horizontal={quizzes.data.length > 0}
+              horizontal={(quizzes?.data?.length || 0) > 0}
               estimatedItemSize={100}
               contentContainerStyle={{ padding: 16 }}
               showsHorizontalScrollIndicator={false}
+              ListEmptyComponent={<EmptyList />}
             />
           )}
           <HStack className="mb-2 mt-4 items-center justify-between px-4">
@@ -80,7 +63,7 @@ export default function HomeScreen() {
             <FlashList
               data={topAuthors?.data || []}
               renderItem={({ item }) => <UserCard user={item} horizontal />}
-              horizontal={topAuthors.data.length > 0}
+              horizontal={(topAuthors?.data?.length || 0) > 0}
               estimatedItemSize={100}
               contentContainerStyle={{ padding: 16 }}
               showsHorizontalScrollIndicator={false}
@@ -102,7 +85,7 @@ export default function HomeScreen() {
             <FlashList
               data={collections?.data || []}
               renderItem={({ item }) => <CollectionCard collection={item} horizontal />}
-              horizontal={collections?.data?.length > 0 || false}
+              horizontal={(collections?.data?.length || 0) > 0}
               estimatedItemSize={100}
               contentContainerStyle={{ padding: 16 }}
               showsHorizontalScrollIndicator={false}
@@ -124,7 +107,7 @@ export default function HomeScreen() {
             <FlashList
               data={trendingQuizzes?.data || []}
               renderItem={({ item }) => <QuizCard quiz={item} horizontal />}
-              horizontal={trendingQuizzes.data.length > 0}
+              horizontal={(trendingQuizzes?.data?.length || 0) > 0}
               estimatedItemSize={100}
               contentContainerStyle={{ padding: 16 }}
               showsHorizontalScrollIndicator={false}
@@ -144,9 +127,9 @@ export default function HomeScreen() {
             <ActivityIndicator size="large" color="#009688" />
           ) : (
             <FlashList
-              data={topPicks.data}
+              data={topPicks?.data || []}
               renderItem={({ item }) => <QuizCard quiz={item} horizontal />}
-              horizontal={topPicks.data.length > 0}
+              horizontal={(topPicks?.data?.length || 0) > 0}
               estimatedItemSize={100}
               contentContainerStyle={{ padding: 16 }}
               showsHorizontalScrollIndicator={false}

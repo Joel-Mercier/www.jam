@@ -1,24 +1,28 @@
 import { VStack } from "@/components/ui/vstack";
-import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
-import { HStack } from "@/components/ui/hstack";
-import { Divider } from "@/components/ui/divider";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallbackText } from "@/components/ui/avatar";
 import { Link } from "expo-router";
 import { TouchableOpacity } from "react-native";
+import { User } from "@/services/api/www.quiz/users";
 
-export default function UserCard({ user, horizontal = false, isLast = false }) {
+interface Props {
+  user: User,
+  horizontal?: boolean,
+  isLast?: boolean
+}
+
+export default function UserCard({ user, horizontal = false, isLast = false }: Props) {
   return (
-    <Link href={{ pathname: "/users/[id]", params: { id: "1" } }} asChild>
+    <Link href={{ pathname: "/users/[id]", params: { id: user.id } }} asChild>
       <TouchableOpacity>
         <Card size="sm" variant="ghost" className={` ${horizontal && !isLast ? "mr-2" : "mr-0"} `}>
           <VStack className="items-center">
             <Avatar size="lg">
-              <AvatarFallbackText>Joel Mercier</AvatarFallbackText>
+              <AvatarFallbackText>{user.username}</AvatarFallbackText>
             </Avatar>
             <Heading size="md" numberOfLines={1} className="mt-2">
-              Joel Mercier
+              {user.username}
             </Heading>
           </VStack>
         </Card>

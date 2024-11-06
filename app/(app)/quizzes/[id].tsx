@@ -5,58 +5,43 @@ import { Heading } from "@/components/ui/heading";
 import { HStack } from "@/components/ui/hstack";
 import { Text } from "@/components/ui/text";
 import { ArrowUpDown, ChevronDown } from "lucide-react-native";
-import { useHeaderHeight } from '@react-navigation/elements';
 import { SafeAreaView } from "@/components/ui/safe-area-view";
 import { FlashList } from "@shopify/flash-list";
-import QuizCard from "@/components/quizzes/QuizCard";
 import { VStack } from "@/components/ui/vstack";
 import { Image } from "@/components/ui/image";
 import { Divider } from "@/components/ui/divider";
-
-const DATA = [
-  {
-    title: "First Item",
-  },
-  {
-    title: "Second Item",
-  },
-  {
-    title: "Third Item",
-  },
-  {
-    title: "Fourth Item",
-  },
-  {
-    title: "Fifth Item",
-  },
-];
+import { useLocalSearchParams } from "expo-router";
+import { useQuiz } from "@/hooks/www.quiz/useQuizzes";
+import QuestionCard from "@/components/questions/QuestionCard";
+import EmptyList from "@/components/ui/empty-list";
 
 export default function QuizScreen() {
-  const headerHeight = useHeaderHeight();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const { data: quiz, isLoading: isQuizLoading } = useQuiz(id as unknown as number);
 
   return (
     <SafeAreaView>
       <Box className="flex-1">
         <FlashList
-          data={DATA}
-          renderItem={({ item }) => <QuizCard quiz={item} />}
+          data={quiz.questions || []}
+          renderItem={({ item }) => <QuestionCard question={item} />}
           ListHeaderComponent={(
             <VStack className="mt-8">
               <Image source={{ uri: "https://picsum.photos/300/200" }} className="w-full h-[200px] rounded-xl" alt="quiz" />
               <Heading size="xl" numberOfLines={1} className="my-8">
-                This is a test quiz let's hope it works
+                {quiz?.name}
               </Heading>
               <Divider />
               <HStack className="items-center justify-between my-4">
                 <VStack className="flex-1 p-2 items-center justify-center border-r-2 border-background-50">
                   <Heading size="md" numberOfLines={1} className="mb-0">
-                    126
+                    {quiz?.questionCount}
                   </Heading>
-                  <Text>quizzes</Text>
+                  <Text>questions</Text>
                 </VStack>
                 <VStack className="flex-1 p-2 items-center justify-center">
                   <Heading size="md" numberOfLines={1} className="mb-0">
-                    32M
+                    {quiz?.timesPlayed}
                   </Heading>
                   <Text>plays</Text>
                 </VStack>
@@ -64,26 +49,25 @@ export default function QuizScreen() {
                   <Heading size="md" numberOfLines={1} className="mb-0">
                     274M
                   </Heading>
-                  <Text>players</Text>
+                  <Text>favorites</Text>
                 </VStack>
                 <VStack className="flex-1 p-2 items-center justify-center border-l-2 border-background-50">
                   <Heading size="md" numberOfLines={1} className="mb-0">
                     274M
                   </Heading>
-                  <Text>players</Text>
+                  <Text>shares</Text>
                 </VStack>
               </HStack>
               <Divider />
               <HStack className="items-center justify-between mt-8 mb-4">
                 <HStack className="items-center">
                   <Avatar size="md">
-                    <AvatarFallbackText>Joel Mercier</AvatarFallbackText>
+                    <AvatarFallbackText>{quiz?.user?.username}</AvatarFallbackText>
                   </Avatar>
                   <VStack className="ml-4">
                     <Heading size="lg" numberOfLines={1} className="mb-0">
-                      Joel Mercier
+                      {quiz?.user?.username}
                     </Heading>
-                    <Text>@joel.mercier</Text>
                   </VStack>
                 </HStack>
                 <HStack>
@@ -96,10 +80,10 @@ export default function QuizScreen() {
                 <Heading size="lg" numberOfLines={1} className="mb-4">
                   Description
                 </Heading>
-                <Text className="text-lg">Invite your friends to play games together !</Text>
+                <Text className="text-lg">{quiz?.description}</Text>
               </VStack>
               <HStack className="my-8 items-center justify-between">
-                <Heading size="xl">245 quizzes</Heading>
+                <Heading size="xl">{quiz?.questionCount} questions</Heading>
                 <Button size="lg" variant="link" action="primary" className="ml-2">
                   <ButtonText>Default</ButtonText>
                   <ButtonIcon as={ArrowUpDown} className="h-6 w-6 text-primary-500 ml-1" />
@@ -109,6 +93,7 @@ export default function QuizScreen() {
           )}
           contentContainerStyle={{ padding: 16 }}
           showsVerticalScrollIndicator={false}
+          ListEmptyComponent={<EmptyList />}
         />
       </Box>
       <Box className="min-h-24 bg-background justify-between items-center flex-row border-t-2 border-background-50 px-4">

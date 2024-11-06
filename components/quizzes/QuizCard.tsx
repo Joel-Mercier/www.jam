@@ -30,7 +30,7 @@ export default function QuizCard({ quiz, horizontal = false, isLast = false }: P
                 alt="quiz"
               />
               <Box className="absolute bottom-4 right-4 bg-primary-500 rounded-lg items-center justify-center p-1">
-                <Text className="text-sm text-white">126 Qs</Text>
+                <Text className="text-sm text-white">{quiz.questionCount} questions</Text>
               </Box>
             </Box>
             <VStack className={`p-4 border-2 border-b-4 border-background-50 ${horizontal ? 'border-b-4 border-t-0' : 'flex-1 border-l-0'}`}>
@@ -41,14 +41,14 @@ export default function QuizCard({ quiz, horizontal = false, isLast = false }: P
                     <Text className="text-sm">{formatDistanceToNow(parseISO(quiz.createdAt))} ago</Text>
                   }
                   <Text className="text-sm mx-2">•</Text>
-                  <Text className="text-sm">5.9K plays</Text>
+                  <Text className="text-sm">{quiz.timesPlayed} plays</Text>
                 </HStack>
               }
               <HStack className="items-center">
                 <Avatar size="sm" className="h-6 w-6">
-                  <AvatarFallbackText>{quiz.user?.firstName} {quiz.user?.lastName}</AvatarFallbackText>
+                  <AvatarFallbackText>{quiz.user?.username}</AvatarFallbackText>
                 </Avatar>
-                <Text className="ml-2 text-sm font-semibold font-body" numberOfLines={1}>{quiz.user?.firstName} {quiz.user?.lastName}</Text>
+                <Text className="ml-2 text-sm font-semibold font-body" numberOfLines={1}>{quiz.user?.username}</Text>
               </HStack>
             </VStack>
           </Box>

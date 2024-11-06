@@ -46,7 +46,7 @@ const toastStyle = tva({
 });
 
 const toastTitleStyle = tva({
-  base: 'text-typography-0 font-medium font-body tracking-md text-left',
+  base: 'font-medium font-body tracking-md text-left text-white',
   variants: {
     isTruncated: {
       true: '',
@@ -117,7 +117,7 @@ const toastTitleStyle = tva({
 });
 
 const toastDescriptionStyle = tva({
-  base: 'font-normal font-body tracking-md text-left',
+  base: 'font-normal font-body tracking-md text-left text-white',
   variants: {
     isTruncated: {
       true: '',
@@ -147,7 +147,7 @@ const toastDescriptionStyle = tva({
   },
   parentVariants: {
     variant: {
-      solid: 'text-typography-50',
+      solid: 'text-white',
       outline: 'text-typography-900',
     },
   },

@@ -5,7 +5,7 @@ import { VStack } from "@/components/ui/vstack";
 import { Heading } from "@/components/ui/heading";
 import { HStack } from "@/components/ui/hstack";
 import { Link } from "expo-router";
-import { Bell, BookOpen, ChevronRight, Eye, File, Info, LogOut, Music, User } from "lucide-react-native";
+import { Bell, BookOpen, ChevronRight, Eye, File, Info, LogOut, Music, ShieldCheck, User } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 import * as Application from 'expo-application';
 import { useSession } from "@/contexts/auth";
@@ -25,7 +25,6 @@ export default function SettingsScreen() {
   const toggleTheme = useApp.use.toggleTheme()
   const theme = useApp.use.theme()
 
-  console.log('currentTheme', theme)
   return (
     <SafeAreaView>
       <ScrollView>
@@ -40,6 +39,21 @@ export default function SettingsScreen() {
                     </Box>
                     <VStack className="ml-8">
                       <Heading size="lg">Personal info</Heading>
+                    </VStack>
+                  </HStack>
+                  <ChevronRight color={theme === "light" ? "#212121" : "#FFF"} size={16} />
+                </HStack>
+              </TouchableOpacity>
+            </Link>
+            <Link href={"/settings/security"} asChild>
+              <TouchableOpacity>
+                <HStack space="md" className="items-center py-4 justify-between w-full">
+                  <HStack className="items-center">
+                    <Box className="w-12 h-12 rounded-full bg-green-500/10 items-center justify-center">
+                      <ShieldCheck color={colors.green[500]} />
+                    </Box>
+                    <VStack className="ml-8">
+                      <Heading size="lg">Security</Heading>
                     </VStack>
                   </HStack>
                   <ChevronRight color={theme === "light" ? "#212121" : "#FFF"} size={16} />

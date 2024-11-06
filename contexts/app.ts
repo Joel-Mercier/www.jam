@@ -21,7 +21,6 @@ const useAppBase = create<AppStore>()((set) => ({
   toggleTheme: () => {
     set((state) => {
       const newTheme = state.theme === 'light' ? 'dark' : 'light'
-      console.log('newTheme', newTheme)
       AsyncStorage.setItem("theme", newTheme)
       return { theme: newTheme }
     });

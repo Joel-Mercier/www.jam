@@ -12,6 +12,8 @@ import QuizCard from "@/components/quizzes/QuizCard";
 import { VStack } from "@/components/ui/vstack";
 import { Image } from "@/components/ui/image";
 import { Divider } from "@/components/ui/divider";
+import { useLocalSearchParams } from "expo-router";
+import { useUser } from "@/hooks/www.quiz/useUsers";
 
 const DATA = [
   {
@@ -32,13 +34,13 @@ const DATA = [
 ];
 
 export default function UserScreen() {
-  const headerHeight = useHeaderHeight();
-
+  const { id } = useLocalSearchParams<{id: string}>()
+  const { data: user, isLoading: isUserLoading } = useUser(id as unknown as number);
   return (
     <SafeAreaView>
       <Box className="flex-1">
         <FlashList
-          data={DATA}
+          data={user?.quizzes || []}
           renderItem={({ item }) => <QuizCard quiz={item} />}
           ListHeaderComponent={(
             <VStack className="mt-8">
@@ -46,13 +48,12 @@ export default function UserScreen() {
               <HStack className="items-center justify-between mt-8 mb-4">
                 <HStack className="items-center">
                   <Avatar size="lg">
-                    <AvatarFallbackText>Joel Mercier</AvatarFallbackText>
+                    <AvatarFallbackText>{user?.username}</AvatarFallbackText>
                   </Avatar>
                   <VStack className="ml-4">
                     <Heading size="xl" numberOfLines={1} className="mb-0">
-                      Joel Mercier
+                      {user?.username}
                     </Heading>
-                    <Text>@joel.mercier</Text>
                   </VStack>
                 </HStack>
                 <HStack>
@@ -66,7 +67,7 @@ export default function UserScreen() {
                 <HStack className="items-center justify-between mb-4">
                   <VStack className="flex-1 p-2 items-center justify-center border-r-2 border-background-50">
                     <Heading size="md" numberOfLines={1} className="mb-0">
-                      126
+                      {user?.quizzes?.length}
                     </Heading>
                     <Text>quizzes</Text>
                   </VStack>
@@ -87,7 +88,7 @@ export default function UserScreen() {
                 <HStack className="items-center justify-between mt-4">
                   <VStack className="flex-1 p-2 items-center justify-center border-r-2 border-background-50">
                     <Heading size="md" numberOfLines={1} className="mb-0">
-                      49
+                      {user?.collections?.length}
                     </Heading>
                     <Text>collections</Text>
                   </VStack>
@@ -99,7 +100,7 @@ export default function UserScreen() {
                   </VStack>
                   <VStack className="flex-1 p-2 items-center justify-center border-l-2 border-background-50">
                     <Heading size="md" numberOfLines={1} className="mb-0">
-                      126
+                      {user?.quizzes?.length}
                     </Heading>
                     <Text>quizzes</Text>
                   </VStack>
@@ -107,7 +108,7 @@ export default function UserScreen() {
               </VStack>
               <Divider />
               <HStack className="my-8 items-center justify-between">
-                <Heading size="xl">245 quizzes</Heading>
+                <Heading size="xl">{user?.quizzes?.length} quizzes</Heading>
                 <Button size="lg" variant="link" action="primary" className="ml-2">
                   <ButtonText>Default</ButtonText>
                   <ButtonIcon as={ArrowUpDown} className="h-6 w-6 text-primary-500 ml-1" />

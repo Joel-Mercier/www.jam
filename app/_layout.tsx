@@ -15,7 +15,6 @@ import {
 } from "@expo-google-fonts/nunito";
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { focusManager, onlineManager, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useReactQueryDevTools } from '@dev-plugins/react-query';
 import { ToastProvider } from "@gluestack-ui/toast"
 import { OverlayProvider } from "@gluestack-ui/overlay"
 import { SessionProvider } from '@/contexts/auth';
@@ -25,6 +24,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import useApp, { Theme } from '@/contexts/app';
 import { StatusBar } from '@/components/ui/status-bar';
 import NetInfo from '@react-native-community/netinfo';
+import { DevToolsBubble } from 'react-native-react-query-devtools';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,7 +38,6 @@ function onAppStateChange(status: AppStateStatus) {
 
 
 export default function RootLayout() {
-  useReactQueryDevTools(queryClient);
   const colorScheme = useColorScheme();
   const [loaded, error] = useFonts({
     Nunito_400Regular,
@@ -108,6 +107,7 @@ export default function RootLayout() {
           </ToastProvider>
         </OverlayProvider>
       </GluestackUIProvider>
+      <DevToolsBubble />
     </QueryClientProvider>
   );
 }

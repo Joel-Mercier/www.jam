@@ -5,28 +5,28 @@ import { Avatar, AvatarFallbackText } from "@/components/ui/avatar";
 import { Link } from "expo-router";
 import { TouchableOpacity } from "react-native";
 import { ButtonText, Button } from "@/components/ui/button";
-import { Text } from "../ui/text";
-import { VStack } from "../ui/vstack";
+import { User as UserType } from "@/services/api/www.quiz/users";
 
-export default function User({ user }) {
+interface Props {
+  user: UserType,
+}
+
+export default function User({ user }: Props) {
   return (
     <Link href={{
       pathname: "/users/[id]",
-      params: { id: "1" }
+      params: { id: user.id }
     }} asChild>
       <TouchableOpacity>
         <Card size="sm" variant="ghost">
           <HStack className="items-center justify-between">
             <HStack className="items-center">
               <Avatar>
-                <AvatarFallbackText>Joel Mercier</AvatarFallbackText>
+                <AvatarFallbackText>{user.username}</AvatarFallbackText>
               </Avatar>
-              <VStack className="ml-4">
-                <Heading size="md" numberOfLines={1} className="mb-0">
-                  Joel Mercier
-                </Heading>
-                <Text>@joel.mercier</Text>
-              </VStack>
+              <Heading size="md" numberOfLines={1} className="ml-4 mb-0">
+                {user.username}
+              </Heading>
             </HStack>
             <HStack>
               <Button size="sm" variant="outline" action="primary" className="mr-1">

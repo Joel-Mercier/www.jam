@@ -24,14 +24,9 @@ import { EyeIcon, EyeOffIcon } from "lucide-react-native";
 import { useHeaderHeight } from '@react-navigation/elements';
 import { Center } from "@/components/ui/center";
 import * as WebBrowser from 'expo-web-browser';
-import { Text } from "@/components/ui/text";
 import { wwwJamApiInstance } from "@/services/api/www.quiz";
 import * as SecureStore from "expo-secure-store";
-
-type LoginInputs = {
-  email: string;
-  password: string;
-}
+import { LoginParams } from "@/services/api/www.quiz/auth";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -44,9 +39,9 @@ export default function LoginScreen() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginInputs>({
+  } = useForm<LoginParams>({
     defaultValues: {
-      email: "admin@wwwjam.com",
+      email: "admin@wwwquiz.com",
       password: "abcd1234"
     }
   })
@@ -57,18 +52,15 @@ export default function LoginScreen() {
     })
   }
 
-  const onSubmit: SubmitHandler<LoginInputs> = (data) => {
+  const onSubmit: SubmitHandler<LoginParams> = (data) => {
     signIn(data);
   }
 
   const handleProviderSignIn = async (provider: string) => {
-    const result = await WebBrowser.openAuthSessionAsync(`http://localhost:3333/api/v1/auth/${provider}/redirect`, 'wwwquiz://(app)/(tabs)/');
+    const result = await WebBrowser.openAuthSessionAsync(`${process.env.EXPO_PUBLIC_WWW_JAM_API_URL}/api/v1/auth/${provider}/redirect`, 'wwwquiz://(app)/(tabs)/');
     if (result.type === 'success') {
-      console.log(result)
       const url = new URL(result.url);
-      console.log(url)
       const token = url.searchParams.get('token') || undefined;
-      console.log(token)
       wwwJamApiInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setSession({
         token: token,
@@ -76,6 +68,8 @@ export default function LoginScreen() {
       await SecureStore.setItemAsync('session', token);
       WebBrowser.dismissAuthSession();
       router.replace('/(app)/(tabs)/')
+    } else {
+      WebBrowser.dismissAuthSession();
     }
   }
 

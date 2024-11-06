@@ -25,7 +25,6 @@ export default function JoinGameScreen() {
   }
 
   const handleBarcodeScanned = ({ data }: any) => {
-    console.log(data);
     setScanned(true)
   }
 
